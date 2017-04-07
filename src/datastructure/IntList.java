@@ -11,7 +11,7 @@ import randomcrap.WhatTheFuckAreYouDoingException;
  * With this class, this is going to be possible! 
  * This class will track the name of the assholes by adding it to a HashMap, 
  * associating their name to whatever the fuck they did to you. Next game, you can run a check and 
- * verify if any of your 5 teammates exist in the IntList, if they do you can start feeding your ass off, 
+ * verify if any of your 4 teammates exist in the IntList, if they do you can start feeding your ass off, 
  * making them regret ever wasting your time. Especially those fucking useless junglers who only AFK farm 
  * and blame laners for losing 4v5.
  * 
@@ -66,11 +66,23 @@ public class IntList implements Serializable{
 		this.list.put(name, "Fuck this kid: "+reason);
 	}
 	
+	/**
+	 * The most important method, verify if your team is in the int list
+	 * 
+	 * @param name check if this kid is in the int list
+	 * @return if I should int in his game
+	 */
 	public boolean isInIntList(String name) {
 		
 		return this.list.containsKey(name);
 	}
 	
+	/**
+	 * If for some god knows reason you want to remove a kid from the int list, use 
+	 * this method
+	 * 
+	 * @param name
+	 */
 	public void removeFromIntList(String name) {
 		
 		if(this.list.containsKey(name))
@@ -81,6 +93,15 @@ public class IntList implements Serializable{
 			
 			throw new WhatTheFuckAreYouDoingException(name+" is not in the intlist you dumbfuck");
 	
+	}
+	
+	/**
+	 * Empty the IntList
+	 */
+	public void clear() {
+		
+		this.list.clear();
+		
 	}
 	
 

@@ -22,7 +22,17 @@ public class IntListLoader {
 		
 		String fileName = Config.getInstance().getFileName();
 		this.intListFile = new File(fileName);
+		
+		if(intListFile.exists())
 			
+			this.load();
+		
+		else
+			try {
+				this.intListFile.createNewFile();
+				this.intList = new IntList();
+				
+			} catch (IOException e) {}	
 	}
 	
 	public static IntListLoader getInstance() {

@@ -2,6 +2,7 @@ package main;
 
 import java.io.File;
 import datastructure.*;
+import ioclasses.IntListLoader;
 
 
 /**
@@ -22,9 +23,11 @@ public class IntListApp {
 	 * 
 	 * Commands:
 	 * add [reason] [name] : will add the retard [name] for [reason] in the IntList
-	 * add [name1] [name2] ... [nameN] : will add your whole fucking team to the IntList LOL
 	 * [reason] = {"jungler","team","feeder",ANYTHING ELSE};
-	 * save : will save manually, add will automatically save after each add
+	 * add [name1] [name2] ... [nameN] : will add your whole fucking team to the IntList LOL
+	 * clear : will reset the IntList, no fucking idea why would you do that though, kids should remain in
+	 * 		   the int list
+	 * save : will save manually, add will automatically save after each add and clear
 	 * ragequit : ALT + F4
 	 * 
 	 * @param args
@@ -32,9 +35,9 @@ public class IntListApp {
 
 	private static IntList intList;
 	
-	
 	public static void main(String[] args) {
 		
+		intList = IntListLoader.getInstance().getIntList();
 		LineOfCommand lineOfCommand = BasicLineOfCommandFactory.getInstance(intList).create();
 		lineOfCommand.start();
 	}

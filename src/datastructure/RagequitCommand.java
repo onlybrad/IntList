@@ -11,7 +11,7 @@ import randomcrap.WhatTheFuckAreYouDoingException;
 public class RagequitCommand extends Command {
 
 	@Override
-	public Void apply(String[] t) {
+	public Boolean apply(String[] t) {
 		
 		if(t == null || t.length == 0 )
 			
@@ -21,4 +21,9 @@ public class RagequitCommand extends Command {
 		
 	}
 	
+	@Override
+	public String toString() {
+		
+		return null; // SHOULD NEVER BE CALLED
+	}
 }

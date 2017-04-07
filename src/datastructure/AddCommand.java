@@ -4,6 +4,7 @@ import ioclasses.IntListSaver;
 
 /**
  * Adding a kid to the IntList, probably the most important thing in here outside of kys in solo queue.
+ * When a change happens, all the observers are notified with the "add" String.
  * 
  * @author Only Brad
  *
@@ -12,6 +13,7 @@ import ioclasses.IntListSaver;
 public class AddCommand extends Command {
 	
 	private final IntList intList; // hehe xd
+	private String[] arguments; // the arguments
 	
 	/**
 	 * 
@@ -23,7 +25,13 @@ public class AddCommand extends Command {
 	}
 	
 	@Override
-	public Void apply(String[] arguments) {
+	public Boolean apply(String[] arguments) {
+		
+		this.arguments = arguments;
+		
+		if(arguments.length == 1)
+			
+			this.addTheKidToTheIntList(arguments[0], "Reason not Specified.");
 		
 		/* specific reason why the kid's being added to the int list */
 		if(arguments.length == 2) {
@@ -31,18 +39,24 @@ public class AddCommand extends Command {
 			String kid = arguments[0];
 			String reason = arguments[1];
 			this.addTheKidToTheIntList(kid,reason);
-			return null;
+			this.setChanged();
 		}
 		
 		/* otherwise it's your whole team added to the int list */
-		if(arguments.length > 2)
+		else if(arguments.length > 2) {
 			
 			this.intList.addUselessTeam(arguments);
+			this.setChanged();
+		}
 		
 		IntListSaver.getInstance().save(this.intList);
-		return null;
+		this.notifyObservers("add");
+		
+		return true;
+		
 	}
-
+	
+	
 	
 	/**
 	 * 
@@ -57,6 +71,29 @@ public class AddCommand extends Command {
 		default : this.intList.add(kid, reason);
 		}
 	
+	}
+	
+	@Override
+	public String toString() {
+		
+		if(this.arguments.length == 2)
+			
+			return arguments[0]+" has been added to the IntList.";
+		
+		else if(this.arguments.length > 2) {
+			
+			String shitTeam = "";
+			
+			for(String shitTeammate : this.arguments)
+				
+				shitTeam += shitTeammate+", ";
+			
+			shitTeam += "have been added to the IntList.";
+			
+			return shitTeam;
+		}
+			
+		else return null;
 	}
 
 }

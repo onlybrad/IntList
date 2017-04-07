@@ -23,16 +23,23 @@ public class SaveCommand extends Command {
 	}
 	
 	@Override
-	public Void apply(String[] t) {
+	public Boolean apply(String[] t) {
 		
 		if(t == null || t.length == 0 )
 			
 			IntListSaver.getInstance().save(this.intList);
 		
 		else
-			throw new WhatTheFuckAreYouDoingException("JUST TYPE \"save\" you moron");
+			
+			return false;
 		
-		return null;
+		return true;
+	}
+	
+	@Override
+	public String toString() {
+		
+		return "File has been saved.";
 	}
 
 }
