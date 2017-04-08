@@ -1,6 +1,6 @@
-package datastructure;
+package hehexd.datastructure;
 
-import ioclasses.IntListSaver;
+import hehexd.ioclasses.IntListSaver;
 
 public class ClearCommand extends Command {
 	

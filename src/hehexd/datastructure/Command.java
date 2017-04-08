@@ -1,4 +1,4 @@
-package datastructure;
+package hehexd.datastructure;
 
 import java.util.*;
 import java.util.function.*;
@@ -21,7 +21,8 @@ public abstract class Command extends Observable implements Function<String[], B
 	
 	@Override
 	/**
-	 * @param t the command without with the command name
+	 * @param t the command without the command name
+	 * @return if the command fonction succeeded in executing
 	 */
 	public abstract Boolean apply(String[] t);
 
@@ -29,7 +30,5 @@ public abstract class Command extends Observable implements Function<String[], B
 	 * YOU MUST FUCKING IMPLEMENT THIS CUZ ITS NEEDED IN LineOfCommand
 	 */
 	public abstract String toString();
-	
-	pu
-	
+		
 }

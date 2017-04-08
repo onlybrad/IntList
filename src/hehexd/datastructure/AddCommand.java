@@ -1,6 +1,6 @@
-package datastructure;
+package hehexd.datastructure;
 
-import ioclasses.IntListSaver;
+import hehexd.ioclasses.IntListSaver;
 
 /**
  * Adding a kid to the IntList, probably the most important thing in here outside of kys in solo queue.

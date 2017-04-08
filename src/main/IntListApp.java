@@ -1,9 +1,7 @@
 package main;
 
-import java.io.File;
-import datastructure.*;
-import ioclasses.IntListLoader;
-
+import hehexd.datastructure.*;
+import hehexd.ioclasses.IntListLoader;
 
 /**
  * It's the main you retard.
@@ -40,6 +38,7 @@ public class IntListApp {
 		intList = IntListLoader.getInstance().getIntList();
 		LineOfCommand lineOfCommand = BasicLineOfCommandFactory.getInstance(intList).create();
 		lineOfCommand.start();
+
 	}
 	
 	

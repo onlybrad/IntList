@@ -1,4 +1,4 @@
-package randomcrap;
+package hehexd.randomcrap;
 
 /**
  * You must be really dumb if an exception like this is thrown in the program. Don't be fucking dumb.

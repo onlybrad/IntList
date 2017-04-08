@@ -1,5 +1,4 @@
-package datastructure;
-
+package hehexd.datastructure;
 /**
  * The thing that creates a LineOfCommand
  * [Factory]

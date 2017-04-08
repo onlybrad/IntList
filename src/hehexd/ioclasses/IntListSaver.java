@@ -1,9 +1,9 @@
-package ioclasses;
+package hehexd.ioclasses;
 
 import java.io.*;
 
-import config.Config;
-import datastructure.IntList;
+import hehexd.config.Config;
+import hehexd.datastructure.IntList;
 
 /**
  * The class that saves the IntList using ObjectStream.

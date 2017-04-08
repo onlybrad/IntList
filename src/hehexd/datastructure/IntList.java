@@ -1,9 +1,9 @@
-package datastructure;
+package hehexd.datastructure;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import randomcrap.WhatTheFuckAreYouDoingException;
+import hehexd.randomcrap.WhatTheFuckAreYouDoingException;
 
 /**
  * Have you ever wished to feed your ass off because some moron feeder or useless jungler

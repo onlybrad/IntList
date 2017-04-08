@@ -1,4 +1,4 @@
-package datastructure;
+package hehexd.datastructure;
 
 /**
  * Line of Command with the commands: "add" , "save", "clear" and "ragequit" xD lol

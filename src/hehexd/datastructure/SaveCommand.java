@@ -1,7 +1,6 @@
-package datastructure;
+package hehexd.datastructure;
 
-import ioclasses.IntListSaver;
-import randomcrap.WhatTheFuckAreYouDoingException;
+import hehexd.ioclasses.IntListSaver;
 
 /**
  * It's to fucking save the IntList. How hard can it be to understand this concept ?

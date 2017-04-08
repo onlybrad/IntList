@@ -1,6 +1,6 @@
-package datastructure;
+package hehexd.datastructure;
 
-import randomcrap.WhatTheFuckAreYouDoingException;
+import hehexd.randomcrap.WhatTheFuckAreYouDoingException;
 
 /**
  * To leave the fucking app
