@@ -17,6 +17,7 @@ public class FileMenu extends JMenu {
 
 	FileMenu() {
 		
+		super("File");
 		this.add(new ExitMenuItem());
 	}
 }

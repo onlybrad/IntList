@@ -78,7 +78,7 @@ public class AddCommand extends Command {
 		
 		if(this.arguments.length == 2)
 			
-			return arguments[0]+" has been added to the IntList.";
+			return this.arguments[0]+" has been added to the IntList. Reason: "+this.arguments[1];
 		
 		else if(this.arguments.length > 2) {
 			

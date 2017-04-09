@@ -11,7 +11,9 @@ import hehexd.datastructure.*;
  * @see 
  */
 public class CommandManager {
-
+	
+	
+	
 	private Command nex‚”Command; // The next command.
 	private Answer<?> oldAnswer; // Buffer for old answer
 	private Answer<?> nextAnswer; // The next answer of a command

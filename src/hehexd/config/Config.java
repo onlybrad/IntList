@@ -2,8 +2,10 @@ package hehexd.config;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.text.SimpleDateFormat;
 
 import hehexd.config.Config;
+
 
 /**
  * 
@@ -23,7 +25,8 @@ public class Config {
 	public final String OUTPUT = "Center";
 	public final Dimension FRAME_SIZE = new Dimension(1024,768);
 	public final Color PANEL_COLOR = new Color(129, 216, 208);
-	
+	public final Color BORDER_COLOR = new Color(0, 147, 175);
+	public final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss"); 
 	
 	private Config() {}
 	

@@ -18,6 +18,8 @@ class ExitMenuItem extends JMenuItem {
 
 	ExitMenuItem() {
 		
+		super("Exit");
+		
 		this.addActionListener(new ActionListener() {
 
 			@Override

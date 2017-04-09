@@ -2,6 +2,12 @@ package hehexd.gui;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.StyledDocument;
+
+import hehexd.config.Config;
 
 
 
@@ -19,19 +25,31 @@ public class OutputArea extends JPanel {
 	private static final long serialVersionUID = -3196768786722599441L;
 	
 	
-	private final JTextArea text = new JTextArea(5000,20);
+	private final JTextPane text = new JTextPane(new DefaultStyledDocument()); // The text area
 	
 	OutputArea() {
 		
+		this.text.setEditable(false);
+		//this.text.setContentType("text/html");
+		
 		this.setLayout(new BorderLayout(30, 30));
 		this.add(this.text,BorderLayout.CENTER);
-		this.text.setEditable(false);
-		
-		this.text.setBorder(BorderFactory.createMatteBorder(5,0,5,0,Color.BLACK));
-
+		this.addBorder();
+	
 	}
 	
-	public JTextArea getTextArea() {
+	/**
+	 * Add a border around the text area
+	 */
+	private void addBorder() {
+
+		Border border = BorderFactory.createLineBorder(Config.getInstance().BORDER_COLOR,10);
+		TitledBorder titledBorder = BorderFactory.createTitledBorder(border,"Log");
+		titledBorder.setTitleJustification(TitledBorder.CENTER);
+		this.text.setBorder(titledBorder);	
+	}
+
+	public JTextPane getTextArea() {
 		
 		return this.text;
 	}

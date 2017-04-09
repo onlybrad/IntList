@@ -20,6 +20,8 @@ public class IntListFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 5960723579614708105L;
+	private InputArea inputArea;
+	private OutputArea outputArea;
 	
 	/**
 	 * The construction of the IntList Frame, the primary GUI interface 
@@ -27,18 +29,20 @@ public class IntListFrame extends JFrame {
 	 */
 	public IntListFrame() {
 		
-		super();
+		super("IntList");
+		
+		this.lookAndFeel();
 		
 		/* Creating the input and output panels */
-		InputArea inputArea = new InputArea();
-		OutputArea outputArea = new OutputArea();
+		this.inputArea = new InputArea();
+		this.outputArea = new OutputArea();
 		inputArea.setBorder(new EmptyBorder(25, 0, 0, 0));
-		this.getContentPane().setBackground(Color.WHITE);
+		this.getContentPane().setBackground(Config.getInstance().PANEL_COLOR);
 		
 		/* Divide the Frame into 2 pannels, the "Input area" and the "Output Area" */
 		this.getContentPane().setLayout(new BorderLayout(25,25));
-		this.getContentPane().add(inputArea,Config.getInstance().INPUT);
-		this.getContentPane().add(outputArea, Config.getInstance().OUTPUT);
+		this.getContentPane().add(this.inputArea,Config.getInstance().INPUT);
+		this.getContentPane().add(this.outputArea, Config.getInstance().OUTPUT);
 		
 		/* Add a Menu Bar */
 		this.setJMenuBar(new IntListMenuBar());
@@ -52,6 +56,19 @@ public class IntListFrame extends JFrame {
 
 	}
 	
+	private void lookAndFeel() {
+		
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			SwingUtilities.updateComponentTreeUI(this);
+		} 
+		
+		catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e) 
+		 {e.printStackTrace();}
+		
+	}
+
 	/**
 	 * Recursive function used to highlight all the components with a black border. Useful to 
 	 * visually see how the components are placed inside the frame.
@@ -69,6 +86,38 @@ public class IntListFrame extends JFrame {
 			
 			((JComponent) component).setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		}
+	}
+	
+	/**
+	 * 
+	 * @return the buttons in the input panel
+	 */
+	public JButton[] getButtons() {
+		
+		return this.inputArea.getButtons();
+	}
+	
+	/**
+	 * 
+	 * @return the name textfield in the input panel
+	 */
+	public JTextField getTextName() {
+		
+		return this.inputArea.getTextName();
+	}
+	
+	/**
+	 * 
+	 * @return the reason textfield in the input panel
+	 */
+	public JTextField getTextReason() {
+		
+		return this.inputArea.getTextReason();
+	}
+	
+	public JTextPane getOutput() {
+		
+		return this.outputArea.getTextArea();
 	}
 
 }

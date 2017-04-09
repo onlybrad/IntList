@@ -30,19 +30,17 @@ public class InputArea extends JPanel {
 
 	InputArea() {
 		
-		this.setBackground(Color.WHITE);
+		this.setBackground(Config.getInstance().PANEL_COLOR);
 		
 		/* add the input panels inside a container */
-		JPanel container = new JPanel(new GridBagLayout());
+		JPanel container = new JPanel();
+		container.setOpaque(false);
 		this.setLayout(new BorderLayout(10,30));
 		this.add(container,"Center");
 		
 		JPanel textAreaPanel = new JPanel(new GridBagLayout()); // Text Panel
 		JPanel buttonsAreaPanel = new JPanel(new GridLayout(3,3,5,5)); // Button Panel
-		
-		textAreaPanel.setMinimumSize(new Dimension(1,1));
-		buttonsAreaPanel.setMinimumSize(new Dimension(1,1));
-		
+
 		JLabel textNameLabel = new JLabel("Name: "); // Label for the text name input
 		JLabel textReasonLabel = new JLabel("Reason: "); // Label for the text reason input
 		
@@ -68,12 +66,11 @@ public class InputArea extends JPanel {
 	private void style(JPanel textAreaPanel, JPanel buttonsAreaPanel, JLabel textNameLabel, JLabel textReasonLabel) {
 		
 		//this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, true));
-		this.getComponent(0).setBackground(Color.WHITE);
-		
+
 		textAreaPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, true));
-		textAreaPanel.setBackground(Config.getInstance().PANEL_COLOR);
-		buttonsAreaPanel.setBackground(Color.WHITE);
-						
+		textAreaPanel.setBackground(Color.WHITE);
+		buttonsAreaPanel.setBackground(Config.getInstance().PANEL_COLOR);
+								
 		this.textName.setBorder(BorderFactory.createLineBorder(Color.black));
 		this.textReason.setBorder(BorderFactory.createLineBorder(Color.black));
 		
@@ -118,7 +115,7 @@ public class InputArea extends JPanel {
 		container.add(buttonsAreaContainer);
 		
 		buttonsAreaContainer.add(buttonsAreaPanel);
-		buttonsAreaContainer.setBackground(Color.WHITE);
+		buttonsAreaContainer.setBackground(Config.getInstance().PANEL_COLOR);
 	}
 	
 	/**
