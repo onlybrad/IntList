@@ -40,6 +40,11 @@ public class IntListLoader {
 		return instance;
 	}
 	
+	/**
+	 * Load the intlist in memory if it exists already. This is usually self-called by IntListLoader
+	 * during its static creation
+	 * 
+	 */
 	public void load() {
 		
 		try {

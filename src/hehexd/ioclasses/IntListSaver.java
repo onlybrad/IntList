@@ -14,21 +14,31 @@ import hehexd.datastructure.IntList;
  */
 public class IntListSaver {
 	
-	private final static IntListSaver instance = new IntListSaver();
-	private File intListFile;
+	private final static IntListSaver instance = new IntListSaver(); // The instance
+	private File intListFile; // The Int List file
 	
 	private IntListSaver()  {
 		
-		String fileName = Config.getInstance().getFileName();
-		this.intListFile = new File(fileName);
+		String fileName = Config.getInstance().getFileName(); // File name
+		this.intListFile = new File(fileName); // The file object of the Int List file
 		
 	}
 	
+	/**
+	 * HELLO ? SINGLETON... GEEZ
+	 * 
+	 * @return
+	 */
 	public static IntListSaver getInstance() {
 		
 		return instance;
 	}
 	
+	/**
+	 * call this and the intlist will be on your disk
+	 * 
+	 * @param intList
+	 */
 	public void save(IntList intList) {
 		
 		try {

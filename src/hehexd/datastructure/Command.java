@@ -5,7 +5,11 @@ import java.util.function.*;
 
 /**
  * An abstract Command for the LineOfCommand. All direct class of Command must implement the method
- * of the interface Function. This class is Observable, it will notify all the observer of changes
+ * of the interface Function: apply. apply contains the core function of the Command. It returns
+ * true if the command succeeded in executing its function, or false if it failed (bad arguments
+ * for example)
+ * 
+ * This class is Observable, it will notify all the observer of changes
  * that happen when a command is executed.
  * 
  * Function<String[],Boolean>
@@ -17,7 +21,7 @@ import java.util.function.*;
  * 
  *
  */
-public abstract class Command extends Observable implements Function<String[], Boolean>  {
+public abstract class Command extends Observable implements Function<String[], Boolean> {
 	
 	@Override
 	/**

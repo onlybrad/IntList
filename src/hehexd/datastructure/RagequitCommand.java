@@ -17,7 +17,7 @@ public class RagequitCommand extends Command {
 			
 			System.exit(420);
 		
-		throw new WhatTheFuckAreYouDoingException("JUST TYPE \"ragequit\" you moron");
+		return false;
 		
 	}
 	

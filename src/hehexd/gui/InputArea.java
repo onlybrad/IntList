@@ -159,7 +159,7 @@ public class InputArea extends JPanel {
 	}
 	
 	/**
-	 * add the text field one by one
+	 * add the text fields one by one
 	 * 
 	 * @param textAreaPanel
 	 * @param textNameLabel
@@ -175,7 +175,23 @@ public class InputArea extends JPanel {
 		addInGridBag(textAreaPanel,this.textReason,1,1,1,1,1,1,100,new Insets(30,5,30,50));
 
 	}
-
+	
+	/**
+	 * Fuck you Java and your stupid Gridbags shenanigans. this is basically a pseudo
+	 * GridBagConstraint factory but inside a function. I won't bother explaining what it does,
+	 * it's pretty non-gay forward (KappaPride)
+	 * 
+	 * @param parent
+	 * @param component
+	 * @param gridx
+	 * @param gridy
+	 * @param gridwidth
+	 * @param gridheight
+	 * @param weightx
+	 * @param weighty
+	 * @param ipadx
+	 * @param insets
+	 */
 	private void addInGridBag(JComponent parent, JComponent component, 
 			int gridx, int gridy, int gridwidth, int gridheight, 
 			double weightx, double weighty, int ipadx, Insets insets) {
@@ -195,7 +211,7 @@ public class InputArea extends JPanel {
 		parent.add(component,c);
 		
 	}
-
+	
 	public JTextField getTextName() {
 		
 		return this.textName;

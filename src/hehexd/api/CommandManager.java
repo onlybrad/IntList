@@ -8,7 +8,7 @@ import hehexd.datastructure.*;
  * to an Answer object. CommandManager will let you directly get the value of the answer.
  * 
  * @author Only Brad
- *
+ * @see 
  */
 public class CommandManager {
 
@@ -39,7 +39,7 @@ public class CommandManager {
 
 		this.nex‚”Command = command;
 		this.oldAnswer = this.nextAnswer;
-		this.nextAnswer = new Answer<>();		
+		this.nextAnswer = null;		
 		this.hasBeenAnswered = false; //a new command means the old answer is no longer needed
 	}
 	
@@ -53,6 +53,13 @@ public class CommandManager {
 		this.nextAnswer = null;
 	}
 	
+	/**
+	 * Will apply the commmand. If the Command is an AnswerableCommand, the value
+	 * will be stored in the Answer object.
+	 * 
+	 * @param t
+	 * @return
+	 */
 	public boolean apply(String[] t) {
 		
 		if(this.nex‚”Command == null)
@@ -62,27 +69,38 @@ public class CommandManager {
 		this.hasBeenAnswered = this.nex‚”Command.apply(t);
 			
 			return hasBeenAnswered;
-		
 	}
 	
 	/**
-	 * Usage: Use only after a CommandManager::setCommand and an CommandManager::apply. 
-	 * Will always return null if there are no reference to a Command 
-	 * because each Command are associated with an Answer. 
-	 * Use CommandManager::getOldAnswer to return an older answer.
+	 * Usage: 
 	 * 
+	 * Use only after a CommandManager::setCommand and an CommandManager::apply. 
+	 * Will always return null if: 
+	 * 
+	 * 1) there are no reference to a Command, because each Command are associated with an Answer.  
+	 * 2) if the Command object isn't an AnswerableObject
+	 * 
+	 * Use CommandManager::getOldAnswer to return an older answer.
 	 * @return the last answer, otherwise return null;
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T getAnswer() {
-		
-		return this.hasBeenAnswered ? (T)this.nextAnswer.getAnswer() : null;
-		
+
+		try{
+			this.nextAnswer = ((Answerable)this.nex‚”Command).getAnswer();
+			return (T) this.nextAnswer.getAnswer();
+		}
+		catch(ClassCastException e) {
+			
+			/* returns null if the Object isn't Answerable, shouldn't happen if you know
+			 * what the fuck you are doing. */
+			return (T) (this.nextAnswer = null);
+		}
 	}
 	
 	/**
 	 * 
-	 * @return the answer before the new one, if none then return null;
+	 * @return the answer before the last one, if none then return null;
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T getOldAnswer() {

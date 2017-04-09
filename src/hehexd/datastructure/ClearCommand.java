@@ -2,6 +2,13 @@ package hehexd.datastructure;
 
 import hehexd.ioclasses.IntListSaver;
 
+/**
+ * I have absolutely no fucking idea why anyone would use this, this command will wipe the whole
+ * IntList.
+ * 
+ * @author Only Brad
+ *
+ */
 public class ClearCommand extends Command {
 	
 	private IntList intList;

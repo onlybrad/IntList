@@ -21,10 +21,15 @@ public class IntListFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 5960723579614708105L;
 	
+	/**
+	 * The construction of the IntList Frame, the primary GUI interface 
+	 * (yes I used Interface twice, shut the fuck up).
+	 */
 	public IntListFrame() {
 		
 		super();
 		
+		/* Creating the input and output panels */
 		InputArea inputArea = new InputArea();
 		OutputArea outputArea = new OutputArea();
 		inputArea.setBorder(new EmptyBorder(25, 0, 0, 0));
@@ -47,6 +52,12 @@ public class IntListFrame extends JFrame {
 
 	}
 	
+	/**
+	 * Recursive function used to highlight all the components with a black border. Useful to 
+	 * visually see how the components are placed inside the frame.
+	 * 
+	 * @param jComponent the component whose children are going to be highlighted (black border)
+	 */
 	@SuppressWarnings("unused")
 	private static void highlightComponents(JComponent jComponent) {
 		

@@ -3,7 +3,7 @@ package main;
 import hehexd.gui.IntListFrame;
 
 /**
- * THE GUI VERSION
+ * THE GUI VERSION of the main. STILL UNDER DEVELOPMENT.
  * 
  * @author Only Brad
  *

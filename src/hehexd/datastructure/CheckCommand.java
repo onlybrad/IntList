@@ -1,11 +1,16 @@
 package hehexd.datastructure;
 
-public class CheckCommand extends Command {
+/**
+ * The command that checks if a kid is in the int list. It's an Answerable command that returns,
+ * a boolean (Is this asshole in the int list or not?)
+ * 
+ * @author Only Brad
+ *
+ */
+public class CheckCommand extends AnswerableCommand<Boolean> {
 	
-	public boolean isInIntList; // Is he in the int list ?
 	private String kid; // the fucking kid
 	private IntList intList; // the int list
-	private Answer<Boolean> answer;
 	
 	public CheckCommand(IntList intList, Answer<Boolean> answer) {
 		
@@ -13,6 +18,11 @@ public class CheckCommand extends Command {
 		this.answer = answer;
 	}
 	
+	/**
+	 * If you don't use a specific Answer object, use that.
+	 * 
+	 * @param intList
+	 */
 	public CheckCommand(IntList intList) {
 		
 		this(intList,new Answer<Boolean>());
@@ -24,8 +34,8 @@ public class CheckCommand extends Command {
 		if( kid.length == 1) {
 			
 			this.kid = kid[0];
-			this.isInIntList = this.intList.isInIntList(this.kid);
-			this.answer.setAnswer(this.isInIntList);
+			boolean isInIntList = this.intList.isInIntList(this.kid);
+			this.answer.setAnswer(isInIntList);
 			return true;
 		}
 			
@@ -35,7 +45,7 @@ public class CheckCommand extends Command {
 	@Override
 	public String toString() {
 		
-		return this.kid+" is "+ (this.isInIntList ? "" : "not ") + "in the IntList";
+		return this.kid+" is "+ (this.answer.getAnswer() ? "" : "not ") + "in the IntList";
 	}
 
 }

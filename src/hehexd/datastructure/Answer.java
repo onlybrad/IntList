@@ -7,9 +7,9 @@ package hehexd.datastructure;
  * 
  * @author Only Brad
  *
- * @param <T>
+ * @param <T> the type of return
  */
-public class Answer<T> {
+public class Answer<T extends Object> {
 	
 	private T answer;
 	
@@ -18,18 +18,18 @@ public class Answer<T> {
 		this.answer = answer;
 	}
 	
-	/**
-	 * Empty constructor, use that if you want the Command answer to add an answer inside this structure
-	 */
 	public Answer() {}
 	
-	public void setAnswer(T answer) {
+	public void setAnswer(T isInIntList) {
 		
-		this.answer = answer;
+		this.answer = isInIntList;
 	}
 	
 	public T getAnswer() {
 		
 		return this.answer;
 	}
+
+
+
 }
