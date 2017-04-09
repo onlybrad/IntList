@@ -21,7 +21,7 @@ import hehexd.randomcrap.WhatTheFuckAreYouDoingException;
 public class IntList implements Serializable{
 	
 	private static final long serialVersionUID = 1624105729432324321L;
-	private Map<String,String> list;
+	private final Map<String,String> list;
 	
 	public IntList() {
 		

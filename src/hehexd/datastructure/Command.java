@@ -23,6 +23,17 @@ import java.util.function.*;
  */
 public abstract class Command extends Observable implements Function<String[], Boolean> {
 	
+	protected final IntList intList; // THE FUCKING INTLIST LOL
+	
+	/**
+	 * 
+	 * @param intList THE INTLIST XD
+	 */
+	protected Command(IntList intList) {
+		
+		this.intList = intList;
+	}
+	
 	@Override
 	/**
 	 * @param t the command without the command name

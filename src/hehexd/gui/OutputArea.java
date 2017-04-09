@@ -5,8 +5,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.StyledDocument;
-
 import hehexd.config.Config;
 
 

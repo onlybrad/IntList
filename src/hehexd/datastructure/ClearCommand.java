@@ -10,14 +10,12 @@ import hehexd.ioclasses.IntListSaver;
  *
  */
 public class ClearCommand extends Command {
-	
-	private IntList intList;
 
-	public ClearCommand(IntList intList) {
-		
-		this.intList = intList;
+
+	protected ClearCommand(IntList intList) {
+		super(intList);
 	}
-	
+
 	@Override
 	public Boolean apply(String[] t) {
 

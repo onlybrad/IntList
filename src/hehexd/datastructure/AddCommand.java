@@ -12,16 +12,10 @@ import hehexd.ioclasses.IntListSaver;
 
 public class AddCommand extends Command {
 	
-	private final IntList intList; // hehe xd
 	private String[] arguments; // the arguments
 	
-	/**
-	 * 
-	 * @param intList The fucking IntList xD
-	 */
 	public AddCommand(IntList intList) {
-		
-		this.intList = intList;
+		super(intList);
 	}
 	
 	@Override

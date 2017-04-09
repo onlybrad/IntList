@@ -20,6 +20,9 @@ public class IntListFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 5960723579614708105L;
+	public final static int ADD_BUTTON = 0; // index of the add button
+	public final static int CHECK_BUTTON = 1; // index of the check button
+	public final static int REMOVE_BUTTON = 2; // index of the remove button
 	private InputArea inputArea;
 	private OutputArea outputArea;
 	

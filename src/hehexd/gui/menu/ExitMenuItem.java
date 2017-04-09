@@ -2,6 +2,7 @@ package hehexd.gui.menu;
 
 import java.awt.event.*;
 import javax.swing.*;
+import hehexd.datastructure.RagequitCommand;
 
 /**
  * an Exit menu item
@@ -18,14 +19,14 @@ class ExitMenuItem extends JMenuItem {
 
 	ExitMenuItem() {
 		
-		super("Exit");
+		super("Rage Quit");
 		
 		this.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				System.exit(420);	
+				new RagequitCommand().apply(null);	
 			}
 		});
 	}

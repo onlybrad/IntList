@@ -10,17 +10,10 @@ import hehexd.ioclasses.IntListSaver;
  */
 public class SaveCommand extends Command {
 
-	private final IntList intList; // here we go again...
-
-	/**
-	 * 
-	 * @param intList DO I REALLY NEED TO...
-	 */
-	public SaveCommand(IntList intList) {
-		
-		this.intList = intList;
+	protected SaveCommand(IntList intList) {
+		super(intList);
 	}
-	
+
 	@Override
 	public Boolean apply(String[] t) {
 		

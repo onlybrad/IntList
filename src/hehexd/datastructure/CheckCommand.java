@@ -10,22 +10,14 @@ package hehexd.datastructure;
 public class CheckCommand extends AnswerableCommand<Boolean> {
 	
 	private String kid; // the fucking kid
-	private IntList intList; // the int list
 	
 	public CheckCommand(IntList intList, Answer<Boolean> answer) {
-		
-		this.intList = intList;
-		this.answer = answer;
+		super(intList, answer);
+		// TODO Auto-generated constructor stub
 	}
-	
-	/**
-	 * If you don't use a specific Answer object, use that.
-	 * 
-	 * @param intList
-	 */
+
 	public CheckCommand(IntList intList) {
-		
-		this(intList,new Answer<Boolean>());
+		super(intList);
 	}
 
 	@Override

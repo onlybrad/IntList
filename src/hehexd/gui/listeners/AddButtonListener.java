@@ -4,8 +4,6 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.text.*;
-import javax.swing.text.html.HTMLDocument;
-
 import hehexd.config.*;
 import hehexd.datastructure.*;
 
@@ -16,31 +14,17 @@ import hehexd.datastructure.*;
  * @author Only Brad
  *
  */
-public class AddButtonListener implements ActionListener {
+public class AddButtonListener extends ButtonListener {
 	
-	private JTextField name; // The place where you put the kid's name
-	private JTextField reason; // The reason why he's going in the int list
-	private JTextPane output; // To write outputs
-	private AddCommand command; // the command
-
-	/**
-	 * 
-	 * @param name The place where you put the kid's name
-	 * @param reason The reason why he's going in the int list
-	 * @param output To write outputs
-	 * @param intList The fucking intlist
-	 */
-	AddButtonListener(JTextField name, 
-			JTextField reason,
-			JTextPane output,
-			IntList intList) {
-		
-		this.name = name;
-		this.reason = reason;
-		this.output = output;
-		this.command = new AddCommand(intList);
+	protected AddButtonListener(JTextField name, JTextField reason, JTextPane output, IntList intList) {
+		super(name, reason, output, intList);
 	}
 	
+	@Override
+	protected Command addCommand(IntList intList) {
+		return new AddCommand(intList);
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -48,24 +32,14 @@ public class AddButtonListener implements ActionListener {
 			
 			return; // can't do anything if one of the fields is empty
 		
-		/* set the command and execute it */
-		GuiControler.commandManager.setCommand(this.command);
-		
-		if(GuiControler.commandManager.apply(new String[]{name.getText(),reason.getText()}))
-			
-			this.successOutput();
-		
-		else
-			
-			this.failOutput();
-		
-		
+		super.actionPerformed(e);
 	}
 	
 	/**
 	 * Write a message in the output indicating that the execution of the command was a failure
 	 */
-	private void failOutput() {
+	@Override
+	protected void failOutput() {
 		
 		String date = Config.getInstance().dateFormat.format(new Date());
 		Document document = this.output.getDocument();
@@ -78,7 +52,8 @@ public class AddButtonListener implements ActionListener {
 	/**
 	 * Write a message in the output indicating that the execution of the command was a success
 	 */
-	private void successOutput() {
+	@Override
+	protected void successOutput() {
 		
 		String date = Config.getInstance().dateFormat.format(new Date());
 		
@@ -93,21 +68,12 @@ public class AddButtonListener implements ActionListener {
 		catch (BadLocationException e) {}
 	}
 
-	/**
-	 * Verify if the TextFields are empty
-	 * 
-	 * @param JTextFields the text fields
-	 * @return if the TextFields are empty
-	 */
-	private boolean isEmpty(JTextField ... JTextFields) {
+	@Override
+	protected String[] generateArgs() {
 		
-		for(JTextField JTextField : JTextFields)
-			
-			if(JTextField.getText() == null || JTextField.getText().trim().isEmpty())
-				
-				return true;
-		
-		return false;
+		return new String[]{name.getText(),reason.getText()};
 	}
+
+
 
 }

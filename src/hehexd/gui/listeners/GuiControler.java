@@ -5,6 +5,7 @@ import javax.swing.JTextField;
 import hehexd.api.*;
 import hehexd.datastructure.*;
 import hehexd.gui.*;
+import static hehexd.gui.IntListFrame.*;
 
 /**
  * Class that links the GUI to the ActionListener
@@ -18,18 +19,25 @@ public class GuiControler {
 	/* use this with the actionlistener of the hehexd.gui.listeners package */
 	final static CommandManager commandManager = new CommandManager();
 	private final IntList intList; // THE FUCKING INTLIST
+	private final IntListFrame frame; // The frame
 	
 	public GuiControler(IntList intList,IntListFrame frame) {
 		
 		this.intList = intList;
+		this.frame = frame;
+	}
+	
+	public void start() {
 		
 		JTextField name = frame.getTextName();
 		JTextField reason = frame.getTextReason();
 		JTextPane output = frame.getOutput();
 		
 		/* add the AddButtonListener to the "add" button */
-		frame.getButtons()[0].addActionListener(new AddButtonListener(name, reason, output, intList));
+		frame.getButtons()[ADD_BUTTON].addActionListener(new AddButtonListener(name, reason, output, intList));
 		
+		/* add the RemoveButtonListener to the "remove" button */
+		frame.getButtons()[REMOVE_BUTTON].addActionListener(new RemoveButtonListener(name,output,intList));
 	}
 	
 	IntList getIntList() {

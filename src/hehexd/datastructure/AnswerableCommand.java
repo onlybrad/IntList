@@ -12,11 +12,27 @@ public abstract class AnswerableCommand<T> extends Command implements Answerable
 
 	protected Answer<T> answer;
 	
-	public AnswerableCommand() {
-		
-		this.answer = new Answer<>();
+	/**
+	 * Constructor with a specific Answer
+	 * 
+	 * @param intList
+	 * @param answer
+	 */
+	protected AnswerableCommand(IntList intList, Answer<T> answer) {
+		super(intList);
+		this.answer = answer;
 	}
 	
+	/**
+	 * If you don't use a specific Answer object, use this instead.
+	 * 
+	 * @param intList
+	 */
+	protected AnswerableCommand(IntList intList) {
+		
+		this(intList,new Answer<T>());
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Answer<T> getAnswer() {

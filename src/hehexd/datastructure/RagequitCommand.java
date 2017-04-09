@@ -1,7 +1,5 @@
 package hehexd.datastructure;
 
-import hehexd.randomcrap.WhatTheFuckAreYouDoingException;
-
 /**
  * To leave the fucking app
  * 
@@ -9,6 +7,11 @@ import hehexd.randomcrap.WhatTheFuckAreYouDoingException;
  *
  */
 public class RagequitCommand extends Command {
+
+	public RagequitCommand() {
+		
+		super(null);
+	}
 
 	@Override
 	public Boolean apply(String[] t) {
