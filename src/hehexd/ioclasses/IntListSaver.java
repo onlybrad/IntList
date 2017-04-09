@@ -27,7 +27,7 @@ public class IntListSaver {
 	/**
 	 * HELLO ? SINGLETON... GEEZ
 	 * 
-	 * @return
+	 * @return the IntListSaver singleton
 	 */
 	public static IntListSaver getInstance() {
 		
@@ -37,7 +37,7 @@ public class IntListSaver {
 	/**
 	 * call this and the intlist will be on your disk
 	 * 
-	 * @param intList
+	 * @param intList The IntList
 	 */
 	public void save(IntList intList) {
 		

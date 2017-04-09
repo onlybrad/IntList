@@ -60,6 +60,7 @@ public class IntList implements Serializable{
 	/**
 	 * 
 	 * @param name dumbass kid
+	 * @param reason the reason you're adding him
 	 */
 	public void add(String name, String reason) {
 		
@@ -81,7 +82,7 @@ public class IntList implements Serializable{
 	 * If for some god knows reason you want to remove a kid from the int list, use 
 	 * this method
 	 * 
-	 * @param name
+	 * @param name the kid your want to remove for god knows what reason
 	 */
 	public void removeFromIntList(String name) {
 		

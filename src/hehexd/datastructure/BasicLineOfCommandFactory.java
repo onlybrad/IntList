@@ -40,7 +40,7 @@ public class BasicLineOfCommandFactory extends LineOfCommandFactory {
 	 * getter of the factory, not thread safe. But who cares right ?
 	 * 
 	 * @param intList ZZzzZz
-	 * @return
+	 * @return The fucking LineOfCommand
 	 */
 	public static LineOfCommandFactory getInstance(IntList intList) {
 		

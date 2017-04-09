@@ -10,7 +10,8 @@ public interface Answerable {
 	
 	/**
 	 * 
-	 * @return The Answer
+	 * @param <T> The type of the Answer
+	 * @return The Answer object
 	 */
-	abstract <T extends Object> Answer<? super T> getAnswer();
+	abstract <T> Answer<T> getAnswer();
 }

@@ -12,7 +12,7 @@ import java.util.function.*;
  * This class is Observable, it will notify all the observer of changes
  * that happen when a command is executed.
  * 
- * Function<String[],Boolean>
+ * Function&lt;String[],Boolean&gt;
  * 
  * String[] is the the list of arguments passed to the Command
  * Boolean indicate if the command has been executed or not

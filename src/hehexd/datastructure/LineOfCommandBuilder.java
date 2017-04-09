@@ -24,7 +24,7 @@ public class LineOfCommandBuilder {
 	/**
 	 * 
 	 * @param commandName The name of the command
-	 * @param function the fucking function of the command
+	 * @param command the fucking function of the command
 	 * @return it's a Builder, what do you think is returned ?
 	 */
 	public LineOfCommandBuilder addCommand(String commandName, Command command) {
@@ -47,7 +47,7 @@ public class LineOfCommandBuilder {
 	/**
 	 * 
 	 * @param messageSuccess Feedback when the command worked
-	 * @return
+	 * @return it's a Builder, what do you think is returned ?
 	 */
 	public LineOfCommandBuilder addMessageSuccess(String messageSuccess) {
 		
@@ -58,7 +58,7 @@ public class LineOfCommandBuilder {
 	/**
 	 * 
 	 * @param decoration what goes before typing in the LineOfCommand
-	 * @return
+	 * @return it's a Builder, what do you think is returned ?
 	 */
 	public LineOfCommandBuilder addDecoration(String decoration) {
 		

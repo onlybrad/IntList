@@ -39,7 +39,7 @@ public class InputArea extends JPanel {
 		this.add(container,"Center");
 		
 		JPanel textAreaPanel = new JPanel(new GridBagLayout()); // Text Panel
-		JPanel buttonsAreaPanel = new JPanel(new GridLayout(3,3,5,5)); // Button Panel
+		JPanel buttonsAreaPanel = new JPanel(new GridLayout(3,1,5,5)); // Button Panel
 
 		JLabel textNameLabel = new JLabel("Name: "); // Label for the text name input
 		JLabel textReasonLabel = new JLabel("Reason: "); // Label for the text reason input
@@ -108,14 +108,10 @@ public class InputArea extends JPanel {
 	 */
 	private void addPanels(JPanel textAreaPanel, JPanel buttonsAreaPanel) {
 				
-		JPanel buttonsAreaContainer = new JPanel(new FlowLayout(FlowLayout.LEADING, 100, 0));
 		JPanel container = (JPanel)this.getComponent(0);
 		
 		container.add(textAreaPanel);
-		container.add(buttonsAreaContainer);
-		
-		buttonsAreaContainer.add(buttonsAreaPanel);
-		buttonsAreaContainer.setBackground(Config.getInstance().PANEL_COLOR);
+		container.add(buttonsAreaPanel);
 	}
 	
 	/**

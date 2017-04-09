@@ -8,6 +8,10 @@ import hehexd.datastructure.*;
  * All Button listeners of the IntList must implement this class. They all will access the same data
  * so might as well inherit from the same super class.
  * 
+ * All sub-classes must implement a method that returns a Command object, two methods that write in the
+ * output object when the Command succeeds or when it fails and a method to generate the list of arguments
+ * to pass to the Command object.
+ * 
  * @author Only Brad
  *
  */

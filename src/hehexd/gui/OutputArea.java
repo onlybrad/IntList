@@ -28,7 +28,6 @@ public class OutputArea extends JPanel {
 	OutputArea() {
 		
 		this.text.setEditable(false);
-		//this.text.setContentType("text/html");
 		
 		this.setLayout(new BorderLayout(30, 30));
 		this.add(this.text,BorderLayout.CENTER);

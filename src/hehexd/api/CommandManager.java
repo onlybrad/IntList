@@ -8,7 +8,6 @@ import hehexd.datastructure.*;
  * to an Answer object. CommandManager will let you directly get the value of the answer.
  * 
  * @author Only Brad
- * @see 
  */
 public class CommandManager {
 	
@@ -18,6 +17,7 @@ public class CommandManager {
 	private Answer<?> oldAnswer; // Buffer for old answer
 	private Answer<?> nextAnswer; // The next answer of a command
 	private boolean hasBeenAnswered; // Did the last command give an answer?
+	
 	
 	/**
 	 * By setting a new Command, the old Answer is rendered void and a reference to
@@ -30,7 +30,7 @@ public class CommandManager {
 	 * method instead.
 	 * 
 	 * @param command The command to execute
-	 * @param T the type of return of the next Answer
+	 * @param <T> the type of return of the Answer of the Command
 	 */
 	public <T> void setCommand(Command command) {
 		
@@ -59,8 +59,8 @@ public class CommandManager {
 	 * Will apply the commmand. If the Command is an AnswerableCommand, the value
 	 * will be stored in the Answer object.
 	 * 
-	 * @param t
-	 * @return
+	 * @param t the list of arguments
+	 * @return if the Command has been executed correctly
 	 */
 	public boolean apply(String[] t) {
 		
@@ -83,6 +83,8 @@ public class CommandManager {
 	 * 2) if the Command object isn't an AnswerableObject
 	 * 
 	 * Use CommandManager::getOldAnswer to return an older answer.
+	 * 
+	 * @param <T> the type of the Answer of the Command
 	 * @return the last answer, otherwise return null;
 	 */
 	@SuppressWarnings("unchecked")
@@ -102,6 +104,7 @@ public class CommandManager {
 	
 	/**
 	 * 
+	 * @param <T> The type of the Answer of the Command
 	 * @return the answer before the last one, if none then return null;
 	 */
 	@SuppressWarnings("unchecked")
