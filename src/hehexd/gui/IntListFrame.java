@@ -4,6 +4,7 @@ import hehexd.config.Config;
 import hehexd.gui.menu.IntListMenuBar;
 
 import java.awt.*;
+import java.io.File;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -34,7 +35,13 @@ public class IntListFrame extends JFrame {
 		
 		super("IntList");
 		
+		/* Set Windows look and feel */
 		this.lookAndFeel();
+		
+		/* Add Icon to the frame */
+		String currentDir = new File("").getAbsolutePath();
+		ImageIcon image = new ImageIcon(currentDir+"/"+Config.getInstance().BigBrother);
+		this.setIconImage(image.getImage());
 		
 		/* Creating the input and output panels */
 		this.inputArea = new InputArea();
@@ -62,7 +69,7 @@ public class IntListFrame extends JFrame {
 	private void lookAndFeel() {
 		
 		try {
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			UIManager.setLookAndFeel(Config.getInstance().LOOK_AND_FEEL);
 			SwingUtilities.updateComponentTreeUI(this);
 		} 
 		

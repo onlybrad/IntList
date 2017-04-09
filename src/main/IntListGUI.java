@@ -19,7 +19,6 @@ public class IntListGUI {
 		IntListFrame frame = new IntListFrame();
 		GuiControler controler = new GuiControler(intList, frame);
 		controler.start();
-		
 		frame.setVisible(true);
 
 	}
