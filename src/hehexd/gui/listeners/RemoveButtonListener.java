@@ -29,6 +29,8 @@ class RemoveButtonListener extends ButtonListener {
 			return; // can't do anything if there are no name
 		
 		super.actionPerformed(e);
+		
+		this.clearInput();
 	}
 
 	@Override

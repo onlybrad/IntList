@@ -26,23 +26,38 @@ public class IntList extends HashMap<String,String> implements Serializable{
 	private static final long serialVersionUID = 1624105729432324321L;
 	
 	/**
-	 * If for some god knows reason you want to remove a kid from the int list, use 
-	 * this method
-	 * 
-	 * @Override
-	 * @param name the kid your want to remove for god knows what reason
+	 * The most important method in this entire goddamn code. Add the fucking kid to the list.
 	 */
-	public void remove(String name) {
+	@Override
+	public String put(String name, String reason) {
 		
-		if(this.containsKey(name))
+		if(!this.containsKey(name))
 			
-			super.remove(name);
+			return super.put(name, reason);
 		
 		else
 			
-			throw new WhatTheFuckAreYouDoingException(name+" is not in the intlist you dumbfuck");
-	
+			throw new WhatTheFuckAreYouDoingException(name+" is already in the intlist you dumbfuck");
 	}
+	
+	
+	/**
+	 * If for some god knows reason you want to remove a kid from the int list, use 
+	 * this method
+	 * 
+	 * @param name the kid your want to remove for god knows what reason
+	 * @exception WhatTheFuckAreYouDoingException is thrown when you try to remove a kid that isn't in the list
+	 */
+	@Override
+	public String remove(Object key) {
+		
+		if(this.containsKey(key))
+			
+			return super.remove(key);
+		
+		throw new WhatTheFuckAreYouDoingException((String)key+ "is not in the intlist you dumbfuck");
+	}
+
 
 
 }

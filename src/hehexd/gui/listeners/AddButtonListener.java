@@ -33,6 +33,8 @@ class AddButtonListener extends ButtonListener {
 			return; // can't do anything if there are no names
 		
 		super.actionPerformed(e);
+		
+		this.clearInput();
 	}
 	
 	/**

@@ -53,7 +53,15 @@ abstract class ButtonListener implements ActionListener {
 		else
 			
 			this.failOutput();
-
+	}
+	
+	/**
+	 * Clear the input of the name and the reason text fields
+	 */
+	protected void clearInput() {
+		
+		this.name.setText("");
+		this.reason.setText("");
 	}
 	
 	/**
