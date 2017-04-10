@@ -13,7 +13,7 @@ public class CommandManager {
 	
 	
 	
-	private Command nex‚”Command; // The next command.
+	private Command nextCommand; // The next command.
 	private Answer<?> oldAnswer; // Buffer for old answer
 	private Answer<?> nextAnswer; // The next answer of a command
 	private boolean hasBeenAnswered; // Did the last command give an answer?
@@ -39,7 +39,7 @@ public class CommandManager {
 			throw new IllegalArgumentException("Cannot use Null Pointer in the CommandManager::setCommand method, use"
 					+ "CommandManager::removeCommand instead");
 
-		this.nex‚”Command = command;
+		this.nextCommand = command;
 		this.oldAnswer = this.nextAnswer;
 		this.nextAnswer = null;		
 		this.hasBeenAnswered = false; //a new command means the old answer is no longer needed
@@ -50,7 +50,7 @@ public class CommandManager {
 	 */
 	public void removeCommand() {
 		
-		this.nex‚”Command = null;
+		this.nextCommand = null;
 		this.oldAnswer = this.nextAnswer;
 		this.nextAnswer = null;
 	}
@@ -64,11 +64,11 @@ public class CommandManager {
 	 */
 	public boolean apply(String[] t) {
 		
-		if(this.nex‚”Command == null)
+		if(this.nextCommand == null)
 			
 			return (this.hasBeenAnswered = false);
 		
-		this.hasBeenAnswered = this.nex‚”Command.apply(t);
+		this.hasBeenAnswered = this.nextCommand.apply(t);
 			
 			return hasBeenAnswered;
 	}
@@ -91,7 +91,7 @@ public class CommandManager {
 	public <T> T getAnswer() {
 
 		try{
-			this.nextAnswer = ((Answerable)this.nex‚”Command).getAnswer();
+			this.nextAnswer = ((Answerable)this.nextCommand).getAnswer();
 			return (T) this.nextAnswer.getAnswer();
 		}
 		catch(ClassCastException e) {
