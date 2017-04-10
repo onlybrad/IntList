@@ -26,7 +26,7 @@ public class CheckCommand extends AnswerableCommand<Boolean> {
 		if( kid.length == 1) {
 			
 			this.kid = kid[0];
-			boolean isInIntList = this.intList.isInIntList(this.kid);
+			boolean isInIntList = this.intList.containsKey(this.kid);
 			this.answer.setAnswer(isInIntList);
 			return true;
 		}

@@ -15,7 +15,7 @@ import hehexd.datastructure.*;
  * @author Only Brad
  *
  */
-public class RemoveButtonListener extends ButtonListener {
+class RemoveButtonListener extends ButtonListener {
 	
 	protected RemoveButtonListener(JTextField name, JTextPane output, IntList intList) {
 		super(name, null, output, intList);
@@ -55,13 +55,19 @@ public class RemoveButtonListener extends ButtonListener {
 
 	@Override
 	protected void failOutput() {
-				
+			
+		Document document = this.output.getDocument();
+		
+		try{
+			document.insertString(document.getLength(),"No kid was removed from the IntList.\n", null);
+		}
+		catch (BadLocationException e) {}
 	}
 
 	@Override
 	protected String[] generateArgs() {
 		
-		return new String[]{this.name.getText()};
+		return this.name.getText().trim().split("\\s+");
 	}
 
 }

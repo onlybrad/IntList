@@ -15,7 +15,7 @@ import hehexd.datastructure.*;
  * @author Only Brad
  *
  */
-public abstract class ButtonListener implements ActionListener {
+abstract class ButtonListener implements ActionListener {
 
 	protected JTextField name; // The place where you put the kid's name
 	protected JTextField reason; // The reason why he's going in the int list
@@ -44,9 +44,9 @@ public abstract class ButtonListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		/* set the command and execute it */
-		GuiControler.commandManager.setCommand(this.command);
+		GuiController.commandManager.setCommand(this.command);
 		
-		if(GuiControler.commandManager.apply(this.generateArgs()))
+		if(GuiController.commandManager.apply(this.generateArgs()))
 			
 			this.successOutput();
 		
@@ -87,13 +87,11 @@ public abstract class ButtonListener implements ActionListener {
 	 * @param JTextFields the text fields
 	 * @return if the TextFields are empty
 	 */
-	protected static boolean isEmpty(JTextField ... JTextFields) {
+	protected static boolean isEmpty(JTextField jTextFields) {
 		
-		for(JTextField JTextField : JTextFields)
-			
-			if(JTextField.getText() == null || JTextField.getText().trim().isEmpty())
+		if(jTextFields.getText() == null || jTextFields.getText().trim().isEmpty())
 				
-				return true;
+			return true;
 		
 		return false;
 	}

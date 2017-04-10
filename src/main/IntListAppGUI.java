@@ -1,8 +1,8 @@
 package main;
 
 import hehexd.datastructure.IntList;
-import hehexd.gui.IntListFrame;
-import hehexd.gui.listeners.GuiControler;
+import hehexd.gui.AppFrame;
+import hehexd.gui.listeners.GuiController;
 import hehexd.ioclasses.IntListLoader;
 
 /**
@@ -11,14 +11,14 @@ import hehexd.ioclasses.IntListLoader;
  * @author Only Brad
  *
  */
-public class IntListGUI {
+public class IntListAppGUI {
 
 	public static void main(String[] args) {
 		
 		IntList intList = IntListLoader.getInstance().getIntList();
-		IntListFrame frame = new IntListFrame();
-		GuiControler controler = new GuiControler(intList, frame);
-		controler.start();
+		AppFrame frame = new AppFrame();
+		GuiController controller = new GuiController(intList, frame);
+		controller.start();
 		frame.setVisible(true);
 
 	}

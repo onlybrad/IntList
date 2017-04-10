@@ -5,7 +5,10 @@ import javax.swing.JTextField;
 import hehexd.api.*;
 import hehexd.datastructure.*;
 import hehexd.gui.*;
-import static hehexd.gui.IntListFrame.*;
+import java.awt.event.*;
+
+import static hehexd.gui.CommandPanel.*;
+
 
 /**
  * Class that links the GUI to the ActionListener
@@ -14,14 +17,14 @@ import static hehexd.gui.IntListFrame.*;
  * @author Only Brad
  *
  */
-public class GuiControler {
+public class GuiController {
 	
 	/* use this with the actionlistener of the hehexd.gui.listeners package */
 	final static CommandManager commandManager = new CommandManager();
 	private final IntList intList; // THE FUCKING INTLIST
-	private final IntListFrame frame; // The frame
+	private final AppFrame frame; // The frame
 	
-	public GuiControler(IntList intList,IntListFrame frame) {
+	public GuiController(IntList intList,AppFrame frame) {
 		
 		this.intList = intList;
 		this.frame = frame;
@@ -38,6 +41,14 @@ public class GuiControler {
 		
 		/* add the RemoveButtonListener to the "remove" button */
 		frame.getButtons()[REMOVE_BUTTON].addActionListener(new RemoveButtonListener(name,output,intList));
+		
+		/* add the ClearButtonListener to the "clear" button */
+		frame.getButtons()[CLEAR_BUTTON].addActionListener(new ClearButtonListener(output, intList));
+		
+		/* add The TabListener to the tabs of the JTabbedPane in the frame */
+		MouseAdapter listener = new TabListener();
+		frame.getTabbedPane().addMouseListener(listener);
+		frame.getTabbedPane().addMouseMotionListener(listener);
 	}
 	
 	IntList getIntList() {

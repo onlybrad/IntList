@@ -16,10 +16,8 @@ public class RemoveCommand extends Command {
 	
 	public RemoveCommand(IntList intList) {
 		super(intList);
-		// TODO Auto-generated constructor stub
 	}
 
-	
 	@Override
 	public Boolean apply(String[] kids) {
 		
@@ -30,7 +28,7 @@ public class RemoveCommand extends Command {
 		for(String kid : kids) {
 			
 			try {
-				this.intList.removeFromIntList(kid);
+				this.intList.remove(kid);
 				this.removed.add(kid);
 				isRemoved = true;
 			}

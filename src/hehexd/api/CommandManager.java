@@ -11,13 +11,10 @@ import hehexd.datastructure.*;
  */
 public class CommandManager {
 	
-	
-	
 	private Command nextCommand; // The next command.
 	private Answer<?> oldAnswer; // Buffer for old answer
 	private Answer<?> nextAnswer; // The next answer of a command
 	private boolean hasBeenAnswered; // Did the last command give an answer?
-	
 	
 	/**
 	 * By setting a new Command, the old Answer is rendered void and a reference to

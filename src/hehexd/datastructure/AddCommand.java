@@ -12,7 +12,7 @@ import hehexd.ioclasses.IntListSaver;
 
 public class AddCommand extends Command {
 	
-	private String[] arguments; // the arguments
+	private String[] arguments = {""}; // the arguments
 	
 	public AddCommand(IntList intList) {
 		super(intList);
@@ -25,22 +25,14 @@ public class AddCommand extends Command {
 		
 		if(arguments.length == 1)
 			
-			this.addTheKidToTheIntList(arguments[0], "Reason not Specified.");
-		
-		/* specific reason why the kid's being added to the int list */
-		if(arguments.length == 2) {
-	
-			String kid = arguments[0];
-			String reason = arguments[1];
-			this.addTheKidToTheIntList(kid,reason);
-			this.setChanged();
-		}
-		
-		/* otherwise it's your whole team added to the int list */
-		else if(arguments.length > 2) {
+			this.intList.put(arguments[0], "Unspecified.");
+				
+		/* otherwise it's your whole team added to the int list, the reason is the last argument */
+		else if(arguments.length > 1) {
 			
-			this.intList.addUselessTeam(arguments);
-			this.setChanged();
+			for(int i=0;i<arguments.length-1;i++)
+				
+				this.intList.put(arguments[i], arguments[arguments.length-1]);
 		}
 		
 		IntListSaver.getInstance().save(this.intList);
@@ -50,44 +42,27 @@ public class AddCommand extends Command {
 		
 	}
 	
-	
-	
-	/**
-	 * 
-	 * @param kid the guy who needs to khs
-	 * @param reason if you really need to know why he's in the int list
-	 */
-	private void addTheKidToTheIntList(String kid, String reason) {
-		
-		switch(reason) {
-		case "feeder" : this.intList.addFeeder(kid); break;
-		case "jungler" : this.intList.addUselessJungler(kid); break;
-		default : this.intList.add(kid, reason);
-		}
-	
-	}
-	
 	@Override
 	public String toString() {
 		
-		if(this.arguments.length == 2)
+		if(this.arguments.length <= 2)
 			
-			return this.arguments[0]+" has been added to the IntList. Reason: "+this.arguments[1];
+			return this.arguments[0]+" has been added to the IntList. Reason: "+this.intList.get(this.arguments[0]);
 		
-		else if(this.arguments.length > 2) {
+		else {
 			
 			String shitTeam = "";
 			
-			for(String shitTeammate : this.arguments)
+			for(int i=0;i<this.arguments.length-2;i++)
 				
-				shitTeam += shitTeammate+", ";
-			
-			shitTeam += "have been added to the IntList.";
+				shitTeam += this.arguments[i]+", ";
+	
+			shitTeam += "and "+this.arguments[this.arguments.length-2]
+					+ " have been added to the IntList. Reason: "+this.intList.get(this.arguments[0]);
 			
 			return shitTeam;
 		}
 			
-		else return null;
 	}
 
 }

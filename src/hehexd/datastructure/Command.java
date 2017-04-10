@@ -37,7 +37,7 @@ public abstract class Command extends Observable implements Function<String[], B
 	@Override
 	/**
 	 * @param t the command without the command name
-	 * @return if the command fonction succeeded in executing
+	 * @return if the command function succeeded in executing
 	 */
 	public abstract Boolean apply(String[] t);
 

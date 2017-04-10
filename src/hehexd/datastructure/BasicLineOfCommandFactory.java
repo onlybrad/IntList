@@ -1,7 +1,7 @@
 package hehexd.datastructure;
 
 /**
- * Line of Command with the commands: "add" , "save", "clear" and "ragequit" xD lol
+ * Line of Command with the commands: "add" , "save", "clear", "ragequit" and "check" xD lol
  * [Singleton]
  *  
  * @author Only Brad

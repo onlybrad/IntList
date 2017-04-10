@@ -2,14 +2,16 @@ package hehexd.gui;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.*;
 
 import hehexd.config.Config;
 
 /**                                  
- * +---------------------+ [Add]									
+ *<pre> +---------------------+ [Add]									
  * |Name:   [JTextField] | [Check]            
- * |Reason: [JTextField] | [Remove]                              
- * +---------------------+
+ * |Reason: [JTextField] | [Remove]  
+ * +---------------------+ [Clear]</pre>                            
+ * 
  * @author Only Brad
  *
  */
@@ -25,7 +27,8 @@ public class InputArea extends JPanel {
 	private final JButton[] buttons = {
 		     new JButton("Add"),
 			 new JButton("Check"),
-			 new JButton("Remove")
+			 new JButton("Remove"),
+			 new JButton("Clear")
 			}; // The buttons
 
 	InputArea() {
@@ -33,13 +36,13 @@ public class InputArea extends JPanel {
 		this.setBackground(Config.getInstance().PANEL_COLOR);
 		
 		/* add the input panels inside a container */
-		JPanel container = new JPanel();
+		JPanel container = new JPanel(new GridLayout());
 		container.setOpaque(false);
 		this.setLayout(new BorderLayout(10,30));
 		this.add(container,"Center");
 		
 		JPanel textAreaPanel = new JPanel(new GridBagLayout()); // Text Panel
-		JPanel buttonsAreaPanel = new JPanel(new GridLayout(3,1,5,5)); // Button Panel
+		JPanel buttonsAreaPanel = new JPanel(new GridLayout(this.buttons.length,1,5,5)); // Button Panel
 
 		JLabel textNameLabel = new JLabel("Name: "); // Label for the text name input
 		JLabel textReasonLabel = new JLabel("Reason: "); // Label for the text reason input
@@ -65,15 +68,17 @@ public class InputArea extends JPanel {
 	 */
 	private void style(JPanel textAreaPanel, JPanel buttonsAreaPanel, JLabel textNameLabel, JLabel textReasonLabel) {
 		
-		//this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, true));
-
+		/* style of the text area panel */
 		textAreaPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, true));
 		textAreaPanel.setBackground(Color.WHITE);
+		
+		/* style of the button area */
 		buttonsAreaPanel.setBackground(Config.getInstance().PANEL_COLOR);
-								
+		buttonsAreaPanel.setBorder(new EmptyBorder(0,100,0,100));
+							
+		/* style of text fields */
 		this.textName.setBorder(BorderFactory.createLineBorder(Color.black));
 		this.textReason.setBorder(BorderFactory.createLineBorder(Color.black));
-		
 		textNameLabel.setHorizontalAlignment(JLabel.LEFT);
 		textReasonLabel.setHorizontalAlignment(JLabel.LEFT);
 		
@@ -109,9 +114,13 @@ public class InputArea extends JPanel {
 	private void addPanels(JPanel textAreaPanel, JPanel buttonsAreaPanel) {
 				
 		JPanel container = (JPanel)this.getComponent(0);
+		JPanel textAreaContainer = new JPanel();
+		textAreaContainer.add(textAreaPanel);
+		textAreaContainer.setBackground(Config.getInstance().PANEL_COLOR);
+		textAreaContainer.setBorder(new EmptyBorder(0, 150, 0, 100));
 		
-		container.add(textAreaPanel);
-		container.add(buttonsAreaPanel);
+		container.add(textAreaContainer,"West");
+		container.add(buttonsAreaPanel,"East");
 	}
 	
 	/**
@@ -134,21 +143,11 @@ public class InputArea extends JPanel {
 	 * @param buttonsAreaPanel
 	 */
 	private void addButtons(JPanel buttonsAreaPanel) {
-		
-		/* top padding in button area */
-		//addSpace(buttonsAreaPanel,7);
-		/* first button */
-		buttonsAreaPanel.add(this.buttons[0]);
-		/* padding */
-		//addSpace(buttonsAreaPanel,4);
-		/* second button */
-		buttonsAreaPanel.add(this.buttons[1]);
-		/* padding */
-		//addSpace(buttonsAreaPanel,4);
-		/* third button */
-		buttonsAreaPanel.add(this.buttons[2]);
-		/* bottom padding in button area */
-		//addSpace(buttonsAreaPanel,7);
+
+		for(JButton button : this.buttons) {
+			
+			buttonsAreaPanel.add(button);
+		}
 	}
 	
 	/**

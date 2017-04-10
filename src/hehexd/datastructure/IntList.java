@@ -15,96 +15,34 @@ import hehexd.randomcrap.WhatTheFuckAreYouDoingException;
  * making them regret ever wasting your time. Especially those fucking useless junglers who only AFK farm 
  * and blame laners for losing 4v5.
  * 
+ * Key = name of the kid
+ * Value = reason you added the kid
+ * 
  * @author Only Brad
  * @author tyler1
  */
-public class IntList implements Serializable{
+public class IntList extends HashMap<String,String> implements Serializable{
 	
 	private static final long serialVersionUID = 1624105729432324321L;
-	private final Map<String,String> list;
-	
-	public IntList() {
-		
-		this.list = new HashMap<>();
-	}
-	
-	/**
-	 * 
-	 * @param name the feeder
-	 */
-	public void addFeeder(String name) {
-		
-		this.list.put(name, "Fucking feeder.");
-	}
-	
-	/**
-	 * 
-	 * @param name the useless jungler
-	 */
-	public void addUselessJungler(String name) {
-		
-		this.list.put(name, "Useless fucking jungler.");
-	}
-	
-	/**
-	 * 
-	 * @param names retard team
-	 */
-	public void addUselessTeam(String[] names) {
-		
-		for(String name : names)
-			
-			this.list.put(name, "Useless fucking team.");
-	}
-	
-	/**
-	 * 
-	 * @param name dumbass kid
-	 * @param reason the reason you're adding him
-	 */
-	public void add(String name, String reason) {
-		
-		this.list.put(name, "Fuck this kid: "+reason);
-	}
-	
-	/**
-	 * The most important method, verify if your team is in the int list
-	 * 
-	 * @param name check if this kid is in the int list
-	 * @return if I should int in his game
-	 */
-	public boolean isInIntList(String name) {
-		
-		return this.list.containsKey(name);
-	}
 	
 	/**
 	 * If for some god knows reason you want to remove a kid from the int list, use 
 	 * this method
 	 * 
+	 * @Override
 	 * @param name the kid your want to remove for god knows what reason
 	 */
-	public void removeFromIntList(String name) {
+	public void remove(String name) {
 		
-		if(this.list.containsKey(name))
+		if(this.containsKey(name))
 			
-			this.list.remove(name);
+			super.remove(name);
 		
 		else
 			
 			throw new WhatTheFuckAreYouDoingException(name+" is not in the intlist you dumbfuck");
 	
 	}
-	
-	/**
-	 * Empty the IntList
-	 */
-	public void clear() {
-		
-		this.list.clear();
-		
-	}
-	
 
-	
+
 }

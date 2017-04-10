@@ -8,7 +8,7 @@ import javax.swing.*;
  * @author Only Brad
  *
  */
-public class FileMenu extends JMenu {
+class FileMenu extends JMenu {
 	
 	/**
 	 * 

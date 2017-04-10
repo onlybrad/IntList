@@ -12,7 +12,7 @@ import hehexd.ioclasses.IntListSaver;
 public class ClearCommand extends Command {
 
 
-	protected ClearCommand(IntList intList) {
+	public ClearCommand(IntList intList) {
 		super(intList);
 	}
 

@@ -14,7 +14,7 @@ import hehexd.datastructure.*;
  * @author Only Brad
  *
  */
-public class AddButtonListener extends ButtonListener {
+class AddButtonListener extends ButtonListener {
 	
 	protected AddButtonListener(JTextField name, JTextField reason, JTextPane output, IntList intList) {
 		super(name, reason, output, intList);
@@ -28,9 +28,9 @@ public class AddButtonListener extends ButtonListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(isEmpty(name,reason))
+		if(isEmpty(name))
 			
-			return; // can't do anything if one of the fields is empty
+			return; // can't do anything if there are no names
 		
 		super.actionPerformed(e);
 	}
@@ -71,9 +71,31 @@ public class AddButtonListener extends ButtonListener {
 	@Override
 	protected String[] generateArgs() {
 		
-		return new String[]{name.getText(),reason.getText()};
+		String[] names = this.name.getText().trim().split("\\s+");
+		
+		if(isEmpty(this.reason))
+			
+			return appendArgs(names,"Unspecified.");
+		
+		return appendArgs(names,this.reason.getText());
+		
 	}
-
+	
+	/**
+	 * Append a string to the end of a String Array. Used to add the reason at the end of the names.
+	 * 
+	 * @param names The kids that you added to the int list
+	 * @param reason the reason you added them
+	 * @return the array containing both the kids and the reason
+	 */
+	private static String[] appendArgs(String[] names, String reason) {
+		
+		List<String> args = new ArrayList<>();
+		args.addAll(Arrays.asList(names));
+		args.addAll(Arrays.asList(reason));
+		
+		return args.toArray(new String[]{});
+	}
 
 
 }
