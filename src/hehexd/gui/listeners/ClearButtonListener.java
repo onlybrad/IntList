@@ -15,11 +15,15 @@ import hehexd.datastructure.*;
  * @author Only Brad
  *
  */
- class ClearButtonListener extends ButtonListener {
+ class ClearButtonListener extends ButtonListener {	
+
+	protected ClearButtonListener(JTextPane output, IntList intList) {
+		super(null, null, output, intList);
+	}
 	
 	/**
 	 * Since it's a removal command, we need to ask the user if he is sure he want to remove the kids
-	 * from the int list. That's a confirmation is sent before applying the command. If he refuses then
+	 * from the int list. That confirmation is sent before applying the Command. If he refuses then
 	 * a special message (no the failure message) appears
 	 */
 	@Override
@@ -40,13 +44,7 @@ import hehexd.datastructure.*;
 		else
 			
 		this.cancelOutput();
-	}										
-	
-
-
-	protected ClearButtonListener(JTextPane output, IntList intList) {
-		super(null, null, output, intList);
-	}
+	}				
 
 	@Override
 	protected Command addCommand(IntList intList) {

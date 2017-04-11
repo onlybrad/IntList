@@ -23,16 +23,20 @@ public class IntListLoader {
 		String fileName = Config.getInstance().getFileName();
 		this.intListFile = new File(fileName);
 		
-		if(intListFile.exists())
+		/* If the file doesn't exit, simply create a new IntList without 
+		 * loading from disk, then save it on disk for future usage. */
+		if(!intListFile.exists())
+			
+			try {
+				this.intListFile.createNewFile();
+				IntListSaver.getInstance().save(this.intList = new IntList());
+			} catch (IOException e) {}	
+		
+		/* Otherwise load it from the disk */
+		else
 			
 			this.load();
 		
-		else
-			try {
-				this.intListFile.createNewFile();
-				this.intList = new IntList();
-				
-			} catch (IOException e) {}	
 	}
 	
 	public static IntListLoader getInstance() {

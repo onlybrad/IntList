@@ -88,7 +88,14 @@ public class AppFrame extends JFrame {
 		
 		catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 				| UnsupportedLookAndFeelException e) 
-		 {e.printStackTrace();}
+		 {
+			try {
+				UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+			} 
+			catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+					| UnsupportedLookAndFeelException e1) {}
+
+		 }
 		
 	}
 

@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.table.*;
 import hehexd.api.CommandManager;
 import hehexd.datastructure.*;
+import hehexd.randomcrap.GlobalMethods;
 
 
 /**
@@ -19,9 +20,25 @@ class IntListTable extends JTable implements Observer{
 	 * 
 	 */
 	private static final long serialVersionUID = -8307915124668883263L;
+	
 	IntListTable(IntList intList) {
-
-		this.setModel(new IntListTableModel(intList));
+		
+		List<Object> names;
+		List<Object> reasons;
+		
+		
+		if(!intList.isEmpty()) {
+			names = new ArrayList<>(intList.keySet());
+			reasons = new ArrayList<>(intList.values());
+		}
+		
+		else {
+			names = new ArrayList<>();
+			reasons = new ArrayList<>();
+		}
+		
+		this.setModel(new IntListTableModel(names,reasons));
+		System.out.println(Arrays.toString(((DefaultTableModel)this.getModel()).getDataVector().toArray()));
 	}
 
 	@Override
@@ -29,7 +46,7 @@ class IntListTable extends JTable implements Observer{
 		
 		/* Making sure the right class is updating the table */
 		if(o instanceof CommandManager) {
-		
+
 			Object[] arr = (Object[]) arg;
 			Class<?> commandClass = (Class<?>) arr[0];
 			String[] arguments = (String[]) arr[1];
@@ -47,21 +64,23 @@ class IntListTable extends JTable implements Observer{
 	 * @param arguments The arguments passed to the Command
 	 */
 	private void updateTable(Class<?> commandClass, String[] arguments) {
-		
+				
 		/* if it's an AddCommand */
-		if(commandClass.getClass().equals(AddCommand.class))
+		if(commandClass.equals(AddCommand.class))
 			
 			this.addNewEntry(arguments);
 		
 		/* if it's a RemoveCommand */
-		if(commandClass.getClass().equals(RemoveCommand.class))
+		else if(commandClass.equals(RemoveCommand.class))
 			
 			this.removeEntry(arguments);
 		
 		/* if it's a ClearCommand */
-		if(commandClass.getClass().equals(ClearCommand.class))
+		else if(commandClass.equals(ClearCommand.class))
 			
 			this.clearTable();
+		
+		System.out.println(Arrays.toString(((DefaultTableModel)this.getModel()).getDataVector().toArray()));
 	}
 	
 	/**
@@ -69,7 +88,7 @@ class IntListTable extends JTable implements Observer{
 	 */
 	private void clearTable() {
 		
-		this.setModel(new IntListTableModel());
+		this.setModel(new IntListTableModel(new ArrayList<Object>(),new ArrayList<Object>()));
 		
 	}
 
@@ -84,11 +103,17 @@ class IntListTable extends JTable implements Observer{
 		
 		for(int i=0;i<arguments.length;i++) {
 			
-			int j = model.names.indexOf(arguments[i]);
-			model.removeRow(j);
-			model.names.remove(j);
-			model.reasons.remove(j);
+			for(int j=0;j<arguments.length;j++) {
+			
+				if(model.getValueAt(j, 0).equals(arguments[i])) {
+				
+						model.removeRow(j);
+						break;
+				}
+				
+			}
 		}
+
 	}
 	
 	/**
@@ -100,31 +125,22 @@ class IntListTable extends JTable implements Observer{
 		
 		IntListTableModel model = (IntListTableModel) this.getModel();
 		
-		if(arguments.length == 1) {
+		if(arguments.length == 1)
 			
-			model.setValueAt(arguments[0], model.names.size(),IntListTableModel.NAME);
-			model.setValueAt("",model.reasons.size(),IntListTableModel.REASON);
-			model.names.add(arguments[0]);
-			model.reasons.add("");
-		}
+			model.addRow(new String[]{arguments[0],""});
 		
-		else if(arguments.length > 1) {
+		else if(arguments.length > 1) 
 			
-			for(int i=0;i<arguments.length-1;i++) {
+			for(int i=0;i<arguments.length-1;i++)
 				
-				model.setValueAt(arguments[i],model.names.size(), IntListTableModel.NAME);
-				model.setValueAt(arguments[arguments.length-1], model.reasons.size(), IntListTableModel.REASON);
-				model.names.add(arguments[i]);
-				model.reasons.add(arguments[arguments.length-1]);
-			}
-				
-		}
+				model.addRow(new String[]{arguments[i],arguments[arguments.length-1]});
+
 	}
+	
 }
 
 /**
- * The model table of the IntList table: This class will keep a copy of the previous state
- * of the IntList in order to modify it's internal state.
+ * The model table of the IntList table.
  * 
  * @author Only Brad
  *
@@ -137,43 +153,27 @@ class IntListTableModel extends DefaultTableModel {
 	private static final long serialVersionUID = -5160558076195370719L;
 	static final int NAME = 0;
 	static final int REASON = 1;
-	List<Object> names;
-	List<Object> reasons;
 	
 	/**
 	 * If the IntList 
 	 * 
 	 * @param intList
 	 */
-	IntListTableModel(IntList intList) {
+	@SuppressWarnings("unchecked")
+	IntListTableModel(List<Object> names, List<Object> reasons) {
 		
-		this.names = new ArrayList<>(intList.keySet());
-		this.reasons = new ArrayList<>(intList.values());
+		super(names.size(),2);
 		
+		for(int i=0;i<names.size();i++) {
+			
+			Vector<Object> data = new Vector<>();
+			data.add(names.get(i));
+			data.add(reasons.get(i));
+			
+			this.dataVector.add(data);
+		}
 	}
 	
-	/**
-	 * If the IntList if empty (example after a wipe), use this constructor
-	 */
-	IntListTableModel() {
-		
-		this.names = new ArrayList<>();
-		this.reasons = new ArrayList<>();
-	} 
-	
-	
-	@Override
-	public int getRowCount() {
-		
-		return this.names.size() ==0 ? 0 : this.names.size();
-	}
-
-	@Override
-	public int getColumnCount() {
-		
-		return 2;
-	}
-
 	@Override
 	public String getColumnName(int column) {
 		
@@ -184,16 +184,4 @@ class IntListTableModel extends DefaultTableModel {
 		}
 	}
 
-
-	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		
-		switch(columnIndex) {
-		case NAME: return (String)this.names.get(rowIndex);
-		case REASON: return (String)this.reasons.get(rowIndex);
-		default: return null;
-		}
-		
-	}
-	
 }

@@ -26,6 +26,11 @@ public class GuiController {
 	private final IntList intList; // THE FUCKING INTLIST
 	private final AppFrame frame; // The frame
 	
+	/**
+	 * 
+	 * @param intList The IntList
+	 * @param frame The GUI frame object
+	 */
 	private GuiController(IntList intList,AppFrame frame) {
 		
 		this.intList = intList;

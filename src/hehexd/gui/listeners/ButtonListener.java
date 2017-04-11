@@ -26,7 +26,7 @@ abstract class ButtonListener implements ActionListener {
 	 * 
 	 * @param name The place where you put the kid's name
 	 * @param reason The reason why he's going in the int list
-	 * @param output To write outputs
+	 * @param output To write outputs as a feedback to the Command's execution
 	 * @param intList The fucking intlist
 	 */
 	protected ButtonListener(JTextField name, 
