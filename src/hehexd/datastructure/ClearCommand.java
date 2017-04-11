@@ -23,7 +23,6 @@ public class ClearCommand extends Command {
 			
 			this.intList.clear();
 			IntListSaver.getInstance().save(this.intList);
-			this.notifyObservers("clear");
 			return true;
 		}
 		

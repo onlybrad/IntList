@@ -77,7 +77,7 @@ class AddButtonListener extends ButtonListener {
 		
 		if(isEmpty(this.reason))
 			
-			return appendArgs(names,"Unspecified.");
+			return appendArgs(names,"");
 		
 		return appendArgs(names,this.reason.getText());
 		

@@ -30,7 +30,6 @@ class RemoveButtonListener extends ButtonListener {
 		
 		super.actionPerformed(e);
 		
-		this.clearInput();
 	}
 
 	@Override

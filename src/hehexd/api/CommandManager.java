@@ -1,15 +1,17 @@
 package hehexd.api;
 
+import java.util.Observable;
+
 import hehexd.datastructure.*;
 
 /**
- * Use this shit to manage input and output of the Commands objects.
+ * Use this shit to manage input and output of the Command objects.
  * A command might generate an answer, if it does, you need to give it a pointer
  * to an Answer object. CommandManager will let you directly get the value of the answer.
  * 
  * @author Only Brad
  */
-public class CommandManager {
+public class CommandManager extends Observable {
 	
 	private Command nextCommand; // The next command.
 	private Answer<?> oldAnswer; // Buffer for old answer
@@ -17,7 +19,7 @@ public class CommandManager {
 	private boolean hasBeenAnswered; // Did the last command give an answer?
 	
 	/**
-	 * By setting a new Command, the old Answer is rendered void and a reference to
+	 *<pre> By setting a new Command, the old Answer is rendered void and a reference to
 	 * it is stored in the OldAnswer attribute. The hasBeenAnswered boolean is set to false
 	 * because the new Command hasn't been answered yet. The Answer of the previous Command 
 	 * is still reachable within the oldAnswer attribute.
@@ -25,6 +27,11 @@ public class CommandManager {
 	 * To prevent problems (creating new Answer objects for no reason for example) you cannot set
 	 * a null pointer as a new command. To remove a Command use the CommandManager::removeCommand 
 	 * method instead.
+	 * 
+	 * Whenever a change occurs, the observer are notified:
+	 * an Array of Object is sent as argument: 
+	 * The first object is the class of the Command
+	 * The second argument is an array of String containing the arguments that were passed to the command</pre>
 	 * 
 	 * @param command The command to execute
 	 * @param <T> the type of return of the Answer of the Command
@@ -65,9 +72,12 @@ public class CommandManager {
 			
 			return (this.hasBeenAnswered = false);
 		
-		this.hasBeenAnswered = this.nextCommand.apply(t);
+		if(this.hasBeenAnswered = this.nextCommand.apply(t));
+		
+			this.setChanged();
 			
-			return hasBeenAnswered;
+		notifyObservers(new Object[]{this.nextCommand.getClass(),t});
+		return hasBeenAnswered;
 	}
 	
 	/**

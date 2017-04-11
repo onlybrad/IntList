@@ -15,7 +15,7 @@ import hehexd.datastructure.*;
  * @author Only Brad
  *
  */
-public class ClearButtonListener extends ButtonListener {
+ class ClearButtonListener extends ButtonListener {
 	
 	/**
 	 * Since it's a removal command, we need to ask the user if he is sure he want to remove the kids

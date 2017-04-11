@@ -17,7 +17,7 @@ public class IntListAppGUI {
 		
 		IntList intList = IntListLoader.getInstance().getIntList();
 		AppFrame frame = new AppFrame();
-		GuiController controller = new GuiController(intList, frame);
+		GuiController controller = GuiController.newInstance(intList, frame);
 		controller.start();
 		frame.setVisible(true);
 

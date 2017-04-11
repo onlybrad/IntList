@@ -8,10 +8,7 @@ import java.util.function.*;
  * of the interface Function: apply. apply contains the core function of the Command. It returns
  * true if the command succeeded in executing its function, or false if it failed (bad arguments
  * for example)
- * 
- * This class is Observable, it will notify all the observer of changes
- * that happen when a command is executed.
- * 
+ *  
  * Function&lt;String[],Boolean&gt;
  * 
  * String[] is the the list of arguments passed to the Command
@@ -21,7 +18,7 @@ import java.util.function.*;
  * 
  *
  */
-public abstract class Command extends Observable implements Function<String[], Boolean> {
+public abstract class Command implements Function<String[], Boolean> {
 	
 	protected final IntList intList; // THE FUCKING INTLIST LOL
 	
@@ -45,5 +42,7 @@ public abstract class Command extends Observable implements Function<String[], B
 	 * YOU MUST FUCKING IMPLEMENT THIS CUZ ITS NEEDED IN LineOfCommand
 	 */
 	public abstract String toString();
+	
+	
 		
 }

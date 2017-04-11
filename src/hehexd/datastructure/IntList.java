@@ -1,8 +1,6 @@
 package hehexd.datastructure;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Map;
-
 import hehexd.randomcrap.WhatTheFuckAreYouDoingException;
 
 /**

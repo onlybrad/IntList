@@ -1,10 +1,10 @@
 package hehexd.datastructure;
 
 import hehexd.ioclasses.IntListSaver;
+import hehexd.randomcrap.WhatTheFuckAreYouDoingException;
 
 /**
  * Adding a kid to the IntList, probably the most important thing in here outside of kys in solo queue.
- * When a change happens, all the observers are notified with the "add" String.
  * 
  * @author Only Brad
  *
@@ -21,23 +21,26 @@ public class AddCommand extends Command {
 	@Override
 	public Boolean apply(String[] arguments) {
 		
+		boolean added = false; // if at least one kid is added then it becomes true
 		this.arguments = arguments;
 		
-		if(arguments.length == 1)
-			
-			this.intList.put(arguments[0], "Unspecified.");
+		try {
+			if(arguments.length == 1)
 				
-		/* otherwise it's your whole team added to the int list, the reason is the last argument */
-		else if(arguments.length > 1) {
-			
-			for(int i=0;i<arguments.length-1;i++)
+				this.intList.put(arguments[0], "");
+					
+			/* otherwise it's your whole team added to the int list, the reason is the last argument */
+			else if(arguments.length > 1) {
 				
-				this.intList.put(arguments[i], arguments[arguments.length-1]);
-		}
+				for(int i=0;i<arguments.length-1;i++)
+					
+					this.intList.put(arguments[i], arguments[arguments.length-1]);
+			}
+			
+			IntListSaver.getInstance().save(this.intList);
+		} 
 		
-		IntListSaver.getInstance().save(this.intList);
-		this.notifyObservers("add");
-		
+		catch(WhatTheFuckAreYouDoingException e) {if(!added) return false;}
 		return true;
 		
 	}

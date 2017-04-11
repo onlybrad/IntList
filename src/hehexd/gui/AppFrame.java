@@ -2,6 +2,8 @@ package hehexd.gui;
 
 import hehexd.config.Config;
 import hehexd.gui.menu.IntListMenuBar;
+import hehexd.ioclasses.IntListLoader;
+
 import java.awt.*;
 import java.io.File;
 import javax.swing.*;
@@ -22,7 +24,7 @@ public class AppFrame extends JFrame {
 	private static final long serialVersionUID = 5960723579614708105L;
 	private JTabbedPane tabbedPane;
 	private CommandPanel commandPanel;
-	private IntListPanel intListPanel;
+	private IntListTable intListTable;
 	
 	/**
 	 * The construction of the IntList Frame, the primary GUI interface 
@@ -53,10 +55,14 @@ public class AppFrame extends JFrame {
 	 */
 	private void addPanels() {
 		
-		/* The primary jpanel in the frame, that will contain all the frames of the program */
+		/* The primary pane in the frame that will contain all the panels of the program */
+
 		this.tabbedPane = new JTabbedPane();
+		
 		this.tabbedPane.add("Command Tab", this.commandPanel = new CommandPanel());
-		this.tabbedPane.add("Int List", this.intListPanel = new IntListPanel());
+		this.tabbedPane.add("Int List", new JScrollPane(this.intListTable = new IntListTable(IntListLoader.getInstance().getIntList()),
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS));
 		this.setContentPane(this.tabbedPane);	
 	}
 	
@@ -130,6 +136,14 @@ public class AppFrame extends JFrame {
 	public JTabbedPane getTabbedPane() {
 		
 		return this.tabbedPane;
+	}
+	
+	/**
+	 * @return the IntList table
+	 */
+	public IntListTable getIntListTable() {
+		
+		return this.intListTable;
 	}
 	
 	/**
