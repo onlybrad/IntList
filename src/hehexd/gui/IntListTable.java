@@ -2,7 +2,6 @@ package hehexd.gui;
 
 import java.util.*;
 import javax.swing.*;
-import javax.swing.event.*;
 import javax.swing.table.*;
 import hehexd.api.CommandManager;
 import hehexd.datastructure.*;
@@ -20,11 +19,9 @@ class IntListTable extends JTable implements Observer{
 	 * 
 	 */
 	private static final long serialVersionUID = -8307915124668883263L;
-	private IntList intList;
-
 	IntListTable(IntList intList) {
 
-		this.setModel(new IntListTableModel(this.intList = intList));
+		this.setModel(new IntListTableModel(intList));
 	}
 
 	@Override
@@ -61,11 +58,10 @@ class IntListTable extends JTable implements Observer{
 			
 			this.removeEntry(arguments);
 		
+		/* if it's a ClearCommand */
 		if(commandClass.getClass().equals(ClearCommand.class))
 			
 			this.clearTable();
-		
-		this.setModel(new IntListTableModel(this.intList = intList));
 	}
 	
 	/**
@@ -73,11 +69,7 @@ class IntListTable extends JTable implements Observer{
 	 */
 	private void clearTable() {
 		
-		IntListTableModel model = (IntListTableModel) this.getModel();
-		
-		model.intList = new TreeMap<>();
-		model.names = new ArrayList<>();
-		model.reasons = new ArrayList<>();
+		this.setModel(new IntListTableModel());
 		
 	}
 
@@ -92,9 +84,10 @@ class IntListTable extends JTable implements Observer{
 		
 		for(int i=0;i<arguments.length;i++) {
 			
-			String reason = model.intList.remove(arguments[i]);
-			model.names.remove(arguments[i]);
-			model.names.remove(reason);
+			int j = model.names.indexOf(arguments[i]);
+			model.removeRow(j);
+			model.names.remove(j);
+			model.reasons.remove(j);
 		}
 	}
 	
@@ -109,24 +102,24 @@ class IntListTable extends JTable implements Observer{
 		
 		if(arguments.length == 1) {
 			
+			model.setValueAt(arguments[0], model.names.size(),IntListTableModel.NAME);
+			model.setValueAt("",model.reasons.size(),IntListTableModel.REASON);
 			model.names.add(arguments[0]);
 			model.reasons.add("");
-			model.intList.put(arguments[0],"");
 		}
 		
-		else {
+		else if(arguments.length > 1) {
 			
 			for(int i=0;i<arguments.length-1;i++) {
 				
+				model.setValueAt(arguments[i],model.names.size(), IntListTableModel.NAME);
+				model.setValueAt(arguments[arguments.length-1], model.reasons.size(), IntListTableModel.REASON);
 				model.names.add(arguments[i]);
-				model.reasons.add(arguments[i-1]);
-				model.intList.put(arguments[i],arguments[i-1]);
+				model.reasons.add(arguments[arguments.length-1]);
 			}
+				
 		}
-		
-		
 	}
-
 }
 
 /**
@@ -136,30 +129,43 @@ class IntListTable extends JTable implements Observer{
  * @author Only Brad
  *
  */
-class IntListTableModel extends AbstractTableModel {
+class IntListTableModel extends DefaultTableModel {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5160558076195370719L;
-	private static final int NAME = 0;
-	private static final int REASON = 1;
-	Map<String,String> intList;
+	static final int NAME = 0;
+	static final int REASON = 1;
 	List<Object> names;
 	List<Object> reasons;
 	
-	IntListTableModel(Map<String,String> intList) {
-	
-		this.intList = new TreeMap<>(intList);
-		this.names = new ArrayList<>(this.intList.keySet());
-		this.reasons = new ArrayList<>(this.intList.values());
+	/**
+	 * If the IntList 
+	 * 
+	 * @param intList
+	 */
+	IntListTableModel(IntList intList) {
+		
+		this.names = new ArrayList<>(intList.keySet());
+		this.reasons = new ArrayList<>(intList.values());
+		
 	}
+	
+	/**
+	 * If the IntList if empty (example after a wipe), use this constructor
+	 */
+	IntListTableModel() {
+		
+		this.names = new ArrayList<>();
+		this.reasons = new ArrayList<>();
+	} 
 	
 	
 	@Override
 	public int getRowCount() {
 		
-		return this.intList.keySet().size();
+		return this.names.size() ==0 ? 0 : this.names.size();
 	}
 
 	@Override

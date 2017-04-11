@@ -7,7 +7,6 @@ import hehexd.ioclasses.IntListLoader;
 import java.awt.*;
 import java.io.File;
 import javax.swing.*;
-import javax.swing.border.*;
 
 /**
  * 

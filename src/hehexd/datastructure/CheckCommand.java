@@ -13,7 +13,6 @@ public class CheckCommand extends AnswerableCommand<Boolean> {
 	
 	public CheckCommand(IntList intList, Answer<Boolean> answer) {
 		super(intList, answer);
-		// TODO Auto-generated constructor stub
 	}
 
 	public CheckCommand(IntList intList) {
