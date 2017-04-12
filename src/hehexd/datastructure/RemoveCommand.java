@@ -38,7 +38,9 @@ public class RemoveCommand extends Command {
 			}
 			
 		}
+		
 		return isRemoved;
+	
 	}
 
 	@Override
@@ -75,14 +77,16 @@ public class RemoveCommand extends Command {
 	private static String buildString(List<String> list, String pluralForm, String singularForm, String oldText, String lastText) {
 		
 		boolean plural = false;
-		oldText += "The kid"+ ( list.size()==1 ? " ": "s ");
+		oldText += "The kid"+ ( list.size()==1 ? " ": "s "); // is it plural ?
 		
+		/* add all but the last kid in the string */
 		for(int i=0;i<list.size()-1;i++) {
 			
-			oldText += list.get(i)+", ";
+			oldText += list.get(i)+", "; 
 			plural = true;
 		}
 		
+		/* add the last kid */
 		oldText += list.get(list.size()-1) 
 				+ (plural?pluralForm:singularForm) + lastText;
 		

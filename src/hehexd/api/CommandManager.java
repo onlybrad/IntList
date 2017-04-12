@@ -72,11 +72,11 @@ public class CommandManager extends Observable {
 			
 			return (this.hasBeenAnswered = false);
 		
-		if(this.hasBeenAnswered = this.nextCommand.apply(t));
+		if(this.hasBeenAnswered = this.nextCommand.apply(t))
 		
 			this.setChanged();
 			
-		notifyObservers(new Object[]{this.nextCommand.getClass(),t});
+		this.notifyObservers(new Object[]{this.nextCommand.getClass(),t});
 		return hasBeenAnswered;
 	}
 	

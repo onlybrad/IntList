@@ -5,7 +5,6 @@ import javax.swing.*;
 import javax.swing.table.*;
 import hehexd.api.CommandManager;
 import hehexd.datastructure.*;
-import hehexd.randomcrap.GlobalMethods;
 
 
 /**
@@ -93,17 +92,21 @@ class IntListTable extends JTable implements Observer{
 	}
 
 	/**
-	 * This method will remove an entry from the Table model array and update its Map copy of the IntList
+	 * <pre>This method will remove an entry from the Table model vector.
+	 * Since the arguments passed to the RemoveCommand may contain names that weren't removed, a NullPointerException
+	 * will be thrown when trying to remove them from the mode. Simply catch the NullPointer and do nothing.</pre>
 	 * 
 	 * @param arguments The argument passed to the Command object
 	 */
 	private void removeEntry(String[] arguments) {
 		
+		System.out.println(arguments[0]);
+		
 		IntListTableModel model = (IntListTableModel) this.getModel();
 		
 		for(int i=0;i<arguments.length;i++) {
 			
-			for(int j=0;j<arguments.length;j++) {
+			for(int j=0;j<model.getDataVector().size();j++) {
 			
 				if(model.getValueAt(j, 0).equals(arguments[i])) {
 				
