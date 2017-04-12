@@ -50,15 +50,16 @@ public class RemoveCommand extends Command {
 		
 		if(!this.removed.isEmpty())
 			
-			s+= buildString(this.removed," have"," has",s," been removed from the IntList.");
+			s+= buildString(this.removed," have"," has"," been removed from the IntList.");
 		
 		else
 			
 			s += "No kids were removed from the IntList.\n";
-				
+		
+		
 		if(!this.notRemoved.isEmpty())
 			
-			s+= buildString(this.notRemoved," were"," was",s, " not in the IntList, you idiot.");
+			s+= buildString(this.notRemoved," were"," was"," not in the IntList, you idiot.");
 		
 		return s;
 		
@@ -74,23 +75,24 @@ public class RemoveCommand extends Command {
 	 * @param lastText the last part of the text to generate
 	 * @return
 	 */
-	private static String buildString(List<String> list, String pluralForm, String singularForm, String oldText, String lastText) {
+	private static String buildString(List<String> list, String pluralForm, String singularForm, String lastText) {
 		
 		boolean plural = false;
-		oldText += "The kid"+ ( list.size()==1 ? " ": "s "); // is it plural ?
+		String text = "";
+		text += "The kid"+ ( list.size()==1 ? " ": "s "); // is it plural ?
 		
 		/* add all but the last kid in the string */
 		for(int i=0;i<list.size()-1;i++) {
 			
-			oldText += list.get(i)+", "; 
+			text += list.get(i)+", "; 
 			plural = true;
 		}
 		
 		/* add the last kid */
-		oldText += list.get(list.size()-1) 
+		text += list.get(list.size()-1) 
 				+ (plural?pluralForm:singularForm) + lastText;
 		
-		return oldText;
+		return text;
 	}
 
 }
