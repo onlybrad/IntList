@@ -29,6 +29,7 @@ public class BasicLineOfCommandFactory extends LineOfCommandFactory {
 				.addCommand("clear", new ClearCommand(intList))
 				.addCommand("ragequit", new RagequitCommand())
 				.addCommand("check", new CheckCommand(intList))
+				.addCommand("remove",new RemoveCommand(intList))
 				.addDecoration("[IntList Request]: ")
 				.addMessageError("***ERROR*** ")
 				.addMessageSuccess("[IntList Answer]: ")

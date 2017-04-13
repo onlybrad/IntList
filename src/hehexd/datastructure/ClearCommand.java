@@ -44,7 +44,7 @@ public class ClearCommand extends Command {
 			@Override
 			public String toFailureString() {
 				
-				return "IntList was not cleared";
+				return "IntList was not cleared. the Clear Command doesn't use arguments.";
 			}
 			
 			

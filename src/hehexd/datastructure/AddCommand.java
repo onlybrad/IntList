@@ -75,22 +75,22 @@ public class AddCommand extends Command {
 				
 				AddCommand command = (AddCommand) this.command;
 				
-				if(arguments.length <= 2)
+				if(command.addedKids.size() == 1)
 					
 					return command.arguments[0]+" has been added to the IntList. Reason: "
-					+command.intList.get(command.arguments[0]);
+					+command.arguments[arguments.length-1];
 				
 				else {
 					
 					String shitTeam = "";
 					
-					for(int i=0;i<command.addedKids.size();i++)
+					for(int i=0;i<command.addedKids.size()-1;i++)
 						
 						shitTeam += command.addedKids.get(i)+", ";
 
-					shitTeam += "and "+command.addedKids.get(command.addedKids.size()-2)
+					shitTeam += "and "+command.addedKids.get(command.addedKids.size()-1)
 							+ " have been added to the IntList. Reason: "+
-							command.intList.get(command.arguments[0]);
+							command.arguments[arguments.length-1];;
 					
 					return shitTeam;
 				}

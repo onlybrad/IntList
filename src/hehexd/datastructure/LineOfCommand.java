@@ -40,7 +40,7 @@ public abstract class LineOfCommand {
 			
 			this.decoration(); // Begin by decoration the line of the command with a string
 			String input = scanner.nextLine();
-			Command command = this.commands.get(this.inputBuffer[0]); // The command is the first string in the input
+			Command command = null; // The command is the first string in the input
 			
 			if(input.length() > 0) 
 				/* Put the string inside an array without the separator (aka SPACE) */
@@ -54,6 +54,7 @@ public abstract class LineOfCommand {
 				
 				/* remove the command name, leave the arguments */
 				String[] arguments = Arrays.copyOfRange(this.inputBuffer, 1, this.inputBuffer.length);
+				command = this.commands.get(this.inputBuffer[0]);
 				
 				/* execute the command with the arguments, and if it succeeds, put a message */
 				if(command.apply(arguments))
@@ -62,12 +63,12 @@ public abstract class LineOfCommand {
 				
 				else
 					
-					this.errorMessage();
+					this.errorMessage(command.getCommandString().toFailureString());
 			}
 			
 			else
 				
-				this.errorMessage(command.getCommandString().toFailureString());
+				this.errorMessage("The command "+this.inputBuffer[0]+" does not exist.");
 
 		}
 		
