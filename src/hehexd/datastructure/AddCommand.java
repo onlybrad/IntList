@@ -26,7 +26,6 @@ public class AddCommand extends Command {
 	@Override
 	public Boolean apply(String[] arguments) {
 		
-		boolean added = false; // if at least one kid is added then it becomes true
 		this.arguments = arguments;
 		this.addedKids = new ArrayList<>();
 		
@@ -106,24 +105,5 @@ public class AddCommand extends Command {
 		};
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

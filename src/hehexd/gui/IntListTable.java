@@ -37,7 +37,6 @@ class IntListTable extends JTable implements Observer{
 		}
 		
 		this.setModel(new IntListTableModel(names,reasons));
-		System.out.println(Arrays.toString(((DefaultTableModel)this.getModel()).getDataVector().toArray()));
 	}
 
 	@Override
@@ -78,8 +77,6 @@ class IntListTable extends JTable implements Observer{
 		else if(commandClass.equals(ClearCommand.class))
 			
 			this.clearTable();
-		
-		System.out.println(Arrays.toString(((DefaultTableModel)this.getModel()).getDataVector().toArray()));
 	}
 	
 	/**
@@ -99,9 +96,7 @@ class IntListTable extends JTable implements Observer{
 	 * @param arguments The argument passed to the Command object
 	 */
 	private void removeEntry(String[] arguments) {
-		
-		System.out.println(arguments[0]);
-		
+				
 		IntListTableModel model = (IntListTableModel) this.getModel();
 		
 		for(int i=0;i<arguments.length;i++) {
@@ -165,7 +160,7 @@ class IntListTableModel extends DefaultTableModel {
 	@SuppressWarnings("unchecked")
 	IntListTableModel(List<Object> names, List<Object> reasons) {
 		
-		super(names.size(),2);
+		super(0,2);
 		
 		for(int i=0;i<names.size();i++) {
 			
