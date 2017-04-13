@@ -25,11 +25,12 @@ public class BasicLineOfCommandFactory extends LineOfCommandFactory {
 	public LineOfCommand create() {
 		
 		return new LineOfCommandBuilder()
-				.addCommand("add", new AddCommand(intList))
-				.addCommand("clear", new ClearCommand(intList))
-				.addCommand("ragequit", new RagequitCommand())
-				.addCommand("check", new CheckCommand(intList))
-				.addCommand("remove",new RemoveCommand(intList))
+				.addCommand(new AddCommand(intList),"add","A","a","put")
+				.addCommand(new ClearCommand(intList),"clear","wipe","c","w","C","W")
+				.addCommand(new RagequitCommand(),"ragequit","rq","RQ","q","Q" )
+				.addCommand(new CheckCommand(intList),"check","lookup","chk","CHK")
+				.addCommand(new RemoveCommand(intList),"remove","r","R","delete","d","D")
+				.addCommand(new ListCommand(intList),"list","ls","l","LS","L")
 				.addDecoration("[IntList Request]: ")
 				.addMessageError("***ERROR*** ")
 				.addMessageSuccess("[IntList Answer]: ")

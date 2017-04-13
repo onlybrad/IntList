@@ -23,13 +23,16 @@ public class LineOfCommandBuilder {
 	
 	/**
 	 * 
-	 * @param commandName The name of the command
-	 * @param command the fucking function of the command
+	 * @param command The Command object that needs to be executed
+	 * @param commandNames the list of all names that refer to the Command in the line of command (aliases)
 	 * @return it's a Builder, what do you think is returned ?
 	 */
-	public LineOfCommandBuilder addCommand(String commandName, Command command) {
+	public LineOfCommandBuilder addCommand(Command command,String ... commandNames) {
 		
-		this.commands.put(commandName, command);
+		for(String commandName : commandNames)
+			
+			this.commands.put(commandName, command);
+		
 		return this;		
 	}
 	
