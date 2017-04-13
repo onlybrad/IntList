@@ -11,10 +11,10 @@ import java.util.*;
  */
 public class LineOfCommandBuilder {
 	
-	private Map<String, Command> commands; // a Map containing all the commands and their function
-	private String messageError;
-	private String decoration;
-	private String messageSuccess;
+	private final Map<String, Command> commands; // a Map containing all the commands and their function
+	private String messageError; // the message error when the message fails
+	private String decoration; // the string that appears at the beginning of the line of command
+	private String messageSuccess; // the message that appears when the command is successful
 	
 	public LineOfCommandBuilder() {
 		
@@ -68,7 +68,7 @@ public class LineOfCommandBuilder {
 	
 	/**
 	 * 
-	 * @return null if there are no commands, no message or decoration 
+	 * @return null if there are no commands, no message or decoration. 
 	 * Why ? cuz fuck you. Otherwise return a lineOfCommand object.
 	 */
 	public LineOfCommand get() {

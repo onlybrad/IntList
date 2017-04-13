@@ -31,9 +31,24 @@ public class ClearCommand extends Command {
 	}
 
 	@Override
-	public String toString() {
+	public CommandString getCommandString() {
 		
-		return "IntList cleared";
+		return new CommandString(this) {
+
+			@Override
+			public String toSuccessString() {
+				
+				return "IntList cleared";
+			}
+
+			@Override
+			public String toFailureString() {
+				
+				return "IntList was not cleared";
+			}
+			
+			
+		};
 	}
 
 }

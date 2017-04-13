@@ -1,6 +1,6 @@
 package hehexd.datastructure;
 /**
- * The thing that creates a LineOfCommand
+ * The thing that creates a LineOfCommand object.
  * [Factory]
  * 
  * @author Only Brad

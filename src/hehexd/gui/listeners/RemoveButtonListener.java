@@ -34,6 +34,7 @@ class RemoveButtonListener extends ButtonListener {
 
 	@Override
 	protected Command addCommand(IntList intList) {
+		
 		return new RemoveCommand(intList);
 	}
 
@@ -41,13 +42,14 @@ class RemoveButtonListener extends ButtonListener {
 	protected void successOutput() {
 		
 		String date = Config.getInstance().dateFormat.format(new Date());
+		CommandString commandString = this.command.getCommandString();
 		
 		StyledDocument document = (StyledDocument) this.output.getStyledDocument();
 		SimpleAttributeSet attributes = new SimpleAttributeSet();
 	    attributes.addAttribute(StyleConstants.CharacterConstants.Foreground, Color.RED);
 	
 		try {
-			document.insertString(document.getLength(),this.command.toString()+" ",attributes);
+			document.insertString(document.getLength(),commandString.toSuccessString()+" ",attributes);
 			document.insertString(document.getLength(),"@ "+date+"\n",null);
 		} 
 		catch (BadLocationException e) {}
@@ -58,9 +60,10 @@ class RemoveButtonListener extends ButtonListener {
 	protected void failOutput() {
 			
 		Document document = this.output.getDocument();
+		CommandString commandString = this.command.getCommandString();
 		
 		try{
-			document.insertString(document.getLength(),"No kid was removed from the IntList.\n", null);
+			document.insertString(document.getLength(),commandString.toFailureString()+"\n", null);
 		}
 		catch (BadLocationException e) {}
 	}

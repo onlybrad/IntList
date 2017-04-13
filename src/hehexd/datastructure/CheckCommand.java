@@ -34,9 +34,25 @@ public class CheckCommand extends AnswerableCommand<Boolean> {
 	}
 
 	@Override
-	public String toString() {
+	public CommandString getCommandString() {
 		
-		return this.kid+" is "+ (this.answer.getAnswer() ? "" : "not ") + "in the IntList";
+		return new CommandString(this) {
+
+			@Override
+			public String toSuccessString() {
+				
+				CheckCommand command = (CheckCommand) this.command;
+				
+				return command.kid+" is "+ (command.answer.getAnswer() ? "" : "not ") + "in the IntList";
+			}
+
+			@Override
+			public String toFailureString() {
+				
+				return "Check was a failure. No check was performed.";
+			}
+			
+		};
 	}
 
 }

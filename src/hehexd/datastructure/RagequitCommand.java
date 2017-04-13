@@ -29,4 +29,13 @@ public class RagequitCommand extends Command {
 		
 		return null; // SHOULD NEVER BE CALLED
 	}
+
+	@Override
+	/**
+	 * Not needed, Ragequit will stop the process
+	 */
+	public CommandString getCommandString() {
+		
+		return null;
+	}
 }

@@ -26,12 +26,11 @@ public class BasicLineOfCommandFactory extends LineOfCommandFactory {
 		
 		return new LineOfCommandBuilder()
 				.addCommand("add", new AddCommand(intList))
-				.addCommand("save", new SaveCommand(intList))
 				.addCommand("clear", new ClearCommand(intList))
 				.addCommand("ragequit", new RagequitCommand())
 				.addCommand("check", new CheckCommand(intList))
 				.addDecoration("[IntList Request]: ")
-				.addMessageError("Dafuk are you smoking? ")
+				.addMessageError("***ERROR*** ")
 				.addMessageSuccess("[IntList Answer]: ")
 				.get();
 	}

@@ -57,9 +57,10 @@ import hehexd.datastructure.*;
 		
 		String date = Config.getInstance().dateFormat.format(new Date());
 		Document document = this.output.getDocument();
+		CommandString commandString = this.command.getCommandString();
 
 		try {
-			document.insertString(document.getLength(), this.command.toString()+" @ "+date+"\n", null);
+			document.insertString(document.getLength(), commandString.toSuccessString()+" @ "+date+"\n", null);
 		} catch (BadLocationException e) {}
 
 	}
@@ -79,10 +80,11 @@ import hehexd.datastructure.*;
 	protected void failOutput() {
 		
 		Document document = this.output.getDocument();
+		CommandString commandString = this.command.getCommandString();
 
 		try {
 			document.insertString(document.getLength(), 
-					"Failed to wipe the IntList for some reason, shouldn't happen if you're not dumb\n", null);
+					commandString.toFailureString()+"\n", null);
 		} catch (BadLocationException e) {}
 	}
 

@@ -44,8 +44,10 @@ class AddButtonListener extends ButtonListener {
 		
 		String date = Config.getInstance().dateFormat.format(new Date());
 		Document document = this.output.getDocument();
+		CommandString commandString = this.command.getCommandString();
+		
 		try {
-			document.insertString(document.getLength(),"Failed to add a kid to the intList @"+ date +"\n", null);
+			document.insertString(document.getLength(), commandString.toFailureString()+" @ "+ date +"\n", null);
 		} 
 		catch (BadLocationException e) {}
 	}
@@ -54,13 +56,14 @@ class AddButtonListener extends ButtonListener {
 	protected void successOutput() {
 		
 		String date = Config.getInstance().dateFormat.format(new Date());
+		CommandString commandString = this.command.getCommandString();
 		
 		StyledDocument document = (StyledDocument) this.output.getStyledDocument();
 		SimpleAttributeSet attributes = new SimpleAttributeSet();
 	    attributes.addAttribute(StyleConstants.CharacterConstants.Bold, Boolean.TRUE);
 	
 		try {
-			document.insertString(document.getLength(),this.command.toString()+" ",attributes);
+			document.insertString(document.getLength(),commandString.toSuccessString()+" ",attributes);
 			document.insertString(document.getLength(),"@ "+date+"\n",null);
 		} 
 		catch (BadLocationException e) {}
