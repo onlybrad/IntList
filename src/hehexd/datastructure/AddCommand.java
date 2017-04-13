@@ -29,9 +29,11 @@ public class AddCommand extends Command {
 		this.arguments = arguments;
 		this.addedKids = new ArrayList<>();
 		
-			if(arguments.length == 1)
+			if(arguments.length == 1) {
 				
 				this.intList.put(arguments[0], "");
+				this.addedKids.add(arguments[0]);
+			}
 					
 			/* otherwise it's your whole team added to the int list, the reason is the last argument */
 			else if(arguments.length > 1) {
@@ -47,13 +49,15 @@ public class AddCommand extends Command {
 				}
 			}
 			
-			/* if at leat 1 kid was added to the int list then the command has succeeded */
+			/* if at least 1 kid was added to the int list then the command has succeeded */
 			if(this.addedKids.size() > 0) {
+				
 				
 				IntListSaver.getInstance().save(this.intList);
 				return true;
 			}
 			
+			System.out.println("wtf");
 			return false;
 	}
 		
