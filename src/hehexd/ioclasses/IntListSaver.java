@@ -19,7 +19,7 @@ public class IntListSaver {
 	
 	private IntListSaver()  {
 		
-		String fileName = Config.getInstance().getFileName(); // File name
+		String fileName = Config.getInstance().FILE_NAME; // File name
 		this.intListFile = new File(fileName); // The file object of the Int List file
 		
 	}

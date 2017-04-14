@@ -7,11 +7,12 @@ import javax.swing.border.*;
 import hehexd.config.Config;
 
 /**                                  
- *<pre> +---------------------+ [Add]									
- * |Name:   [JTextField] | [Check]            
- * |Reason: [JTextField] | [Remove]  
- * +---------------------+ [Clear]</pre>                            
- * 
+ * 									
+ *  <pre>  +---------------------+  [Add]                           
+ *  |Name:   [JTextField] |  [Check]
+ *  |Reason: [JTextField] |  [Remove]    
+ *  +---------------------+  [Clear]                        
+ *                           [List]</pre>
  * @author Only Brad
  *
  */
@@ -28,7 +29,8 @@ public class InputArea extends JPanel {
 		     new JButton("Add"),
 			 new JButton("Check"),
 			 new JButton("Remove"),
-			 new JButton("Clear")
+			 new JButton("Clear"),
+			 new JButton("List")
 			}; // The buttons
 
 	InputArea() {
@@ -56,6 +58,7 @@ public class InputArea extends JPanel {
 		/* add TextArea and Button in their respective Panels */
 		this.addComponents(textAreaPanel, buttonsAreaPanel, textNameLabel, textReasonLabel);
 		
+		
 		//showAllComponents(this);
 	}
 
@@ -69,7 +72,7 @@ public class InputArea extends JPanel {
 	private void style(JPanel textAreaPanel, JPanel buttonsAreaPanel, JLabel textNameLabel, JLabel textReasonLabel) {
 		
 		/* style of the text area panel */
-		textAreaPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, true));
+		textAreaPanel.setBorder(BorderFactory.createLineBorder(Config.getInstance().BORDER_COLOR, 3, true));
 		textAreaPanel.setBackground(Color.WHITE);
 		
 		/* style of the button area */
@@ -77,8 +80,8 @@ public class InputArea extends JPanel {
 		buttonsAreaPanel.setBorder(new EmptyBorder(0,100,0,100));
 							
 		/* style of text fields */
-		this.textName.setBorder(BorderFactory.createLineBorder(Color.black));
-		this.textReason.setBorder(BorderFactory.createLineBorder(Color.black));
+		this.textName.setBorder(BorderFactory.createLineBorder(Config.getInstance().BORDER_COLOR));
+		this.textReason.setBorder(BorderFactory.createLineBorder(Config.getInstance().BORDER_COLOR));
 		textNameLabel.setHorizontalAlignment(JLabel.LEFT);
 		textReasonLabel.setHorizontalAlignment(JLabel.LEFT);
 		

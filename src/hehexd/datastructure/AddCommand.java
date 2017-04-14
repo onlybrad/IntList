@@ -56,8 +56,7 @@ public class AddCommand extends Command {
 				IntListSaver.getInstance().save(this.intList);
 				return true;
 			}
-			
-			System.out.println("wtf");
+
 			return false;
 	}
 		

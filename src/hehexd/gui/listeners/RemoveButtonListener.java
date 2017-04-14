@@ -33,7 +33,7 @@ class RemoveButtonListener extends ButtonListener {
 	}
 
 	@Override
-	protected Command addCommand(IntList intList) {
+	protected Command getCommand(IntList intList) {
 		
 		return new RemoveCommand(intList);
 	}
@@ -49,8 +49,7 @@ class RemoveButtonListener extends ButtonListener {
 	    attributes.addAttribute(StyleConstants.CharacterConstants.Foreground, Color.RED);
 	
 		try {
-			document.insertString(document.getLength(),commandString.toSuccessString()+" ",attributes);
-			document.insertString(document.getLength(),"@ "+date+"\n",null);
+			document.insertString(document.getLength(),commandString.toSuccessString()+" @ "+date+"\n",attributes);
 		} 
 		catch (BadLocationException e) {}
 		

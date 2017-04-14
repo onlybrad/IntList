@@ -25,7 +25,6 @@ class IntListTable extends JTable implements Observer{
 		List<Object> names;
 		List<Object> reasons;
 		
-		
 		if(!intList.isEmpty()) {
 			names = new ArrayList<>(intList.keySet());
 			reasons = new ArrayList<>(intList.values());
@@ -180,6 +179,15 @@ class IntListTableModel extends DefaultTableModel {
 		case REASON: return "Reason";
 		default: return null;
 		}
+	}
+	
+	/**
+	 * Can't edit it yet.
+	 */
+	@Override
+	public boolean isCellEditable(int row, int column) {
+		
+		return false;
 	}
 
 }

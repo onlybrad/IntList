@@ -3,14 +3,14 @@ package hehexd.gui;
 import hehexd.config.Config;
 import hehexd.gui.menu.IntListMenuBar;
 import hehexd.ioclasses.IntListLoader;
-
 import java.awt.*;
-import java.io.File;
 import javax.swing.*;
 
 /**
  * 
- * The GUI Frame of the Int List
+ * The GUI Frame of the Int List. Contains 2 tabs : The Command Tab and the IntList Table. In the Command
+ * Tab you can add/remove/check/clear/list while having a feedback in the bottom of the pannel. The IntList table
+ * contains the database entries.
  * 
  * @author Only Brad
  *
@@ -59,7 +59,9 @@ public class AppFrame extends JFrame {
 		this.tabbedPane = new JTabbedPane();
 		
 		this.tabbedPane.add("Command Tab", this.commandPanel = new CommandPanel());
-		this.tabbedPane.add("Int List", new JScrollPane(this.intListTable = new IntListTable(IntListLoader.getInstance().getIntList()),
+		this.tabbedPane.add("Int List", 
+				new JScrollPane(this.intListTable 
+						= new IntListTable(IntListLoader.getInstance().getIntList()),
 				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS));
 		this.setContentPane(this.tabbedPane);	
@@ -70,10 +72,8 @@ public class AppFrame extends JFrame {
 	 */
 	private void BigBrother() {
 		
-		String currentDir = new File("").getAbsolutePath();
-		ImageIcon image = new ImageIcon(currentDir+"/"+Config.getInstance().BigBrother);
+		ImageIcon image = new ImageIcon(Config.getInstance().BigBrother);
 		this.setIconImage(image.getImage());
-		
 	}
 	
 	/**

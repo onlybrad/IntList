@@ -6,7 +6,7 @@ import hehexd.datastructure.*;
 
 /**
  * All Button listeners of the IntList must implement this class. They all will access the same data
- * so might as well inherit from the same super class.
+ * and use (almost) the same GUI elements so might as well inherit from the same super class.
  * 
  * All sub-classes must implement a method that returns a Command object, two methods that write in the
  * output object when the Command succeeds or when it fails and a method to generate the list of arguments
@@ -16,7 +16,7 @@ import hehexd.datastructure.*;
  *
  */
 abstract class ButtonListener implements ActionListener {
-
+	
 	protected JTextField name; // The place where you put the kid's name
 	protected JTextField reason; // The reason why he's going in the int list
 	protected JTextPane output; // To write outputs
@@ -37,7 +37,7 @@ abstract class ButtonListener implements ActionListener {
 		this.name = name;
 		this.reason = reason;
 		this.output = output;
-		this.command = this.addCommand(intList);
+		this.command = this.getCommand(intList);
 	}
 	
 	@Override
@@ -54,32 +54,28 @@ abstract class ButtonListener implements ActionListener {
 			
 			this.failOutput();
 	}
-	
-	/**
-	 * Clear the input of the name and the reason text fields
-	 */
-	protected void clearInput() {
 		
-		this.name.setText("");
-		this.reason.setText("");
-	}
-	
 	/**
 	 * Concrete ButtonListener must implement this to return the right command
 	 * @param intList 
 	 * 
 	 * @return the command to execute when the button is pressed
 	 */
-	protected abstract Command addCommand(IntList intList);
+	protected abstract Command getCommand(IntList intList);
 	
 	/**
 	 * Concrete ButtonListener must implement this to write a successful message inside the output
-	 * object
+	 * object. If you want to add a date, use the "@" character to separate the content from the date. 
+	 * A custom StyledDocument is used in the output to format the text whenever it encounters the 
+	 * "@" character.
 	 */
 	protected abstract void successOutput();
 	
 	/**
-	 * Concrete ButtonListener must implement this to write a fail message inside the output object
+	 * Concrete ButtonListener must implement this to write a fail message inside the output object. 
+	 * If you want to add a date, use the "@" character to separate the content from the date. 
+	 * A custom StyledDocument is used in the output to format the text whenever it encounters the 
+	 * "@" character.
 	 */
 	protected abstract void failOutput();
 	
@@ -103,5 +99,17 @@ abstract class ButtonListener implements ActionListener {
 		
 		return false;
 	}
+	
+	/**
+	 * Clear a specific JTextField
+	 * 
+	 * @param name
+	 */
+	protected static void clear(JTextField field) {
+		
+		field.setText("");
+		
+	}
+
 
 }

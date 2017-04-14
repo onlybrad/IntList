@@ -18,11 +18,11 @@ public class CheckCommand extends AnswerableCommand<Boolean> {
 	public CheckCommand(IntList intList) {
 		super(intList);
 	}
-
+	
 	@Override
 	public Boolean apply(String[] kid) {
 		
-		if( kid.length == 1) {
+		if( kid != null && kid.length == 1) {
 			
 			this.kid = kid[0];
 			boolean isInIntList = this.intList.containsKey(this.kid);

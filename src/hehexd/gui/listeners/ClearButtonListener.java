@@ -47,7 +47,7 @@ import hehexd.datastructure.*;
 	}				
 
 	@Override
-	protected Command addCommand(IntList intList) {
+	protected Command getCommand(IntList intList) {
 		
 		return new ClearCommand(intList);
 	}

@@ -23,7 +23,7 @@ class AddButtonListener extends ButtonListener {
 	}
 	
 	@Override
-	protected Command addCommand(IntList intList) {
+	protected Command getCommand(IntList intList) {
 		return new AddCommand(intList);
 	}
 
@@ -36,7 +36,9 @@ class AddButtonListener extends ButtonListener {
 		
 		super.actionPerformed(e);
 		
-		this.clearInput();
+		/* clear the name and reason text fields */
+		clear(this.name);
+		clear(this.reason);
 	}
 	
 	@Override
@@ -56,15 +58,11 @@ class AddButtonListener extends ButtonListener {
 	protected void successOutput() {
 		
 		String date = Config.getInstance().dateFormat.format(new Date());
+		Document document = this.output.getDocument();
 		CommandString commandString = this.command.getCommandString();
-		
-		StyledDocument document = (StyledDocument) this.output.getStyledDocument();
-		SimpleAttributeSet attributes = new SimpleAttributeSet();
-	    attributes.addAttribute(StyleConstants.CharacterConstants.Bold, Boolean.TRUE);
 	
 		try {
-			document.insertString(document.getLength(),commandString.toSuccessString()+" ",attributes);
-			document.insertString(document.getLength(),"@ "+date+"\n",null);
+			document.insertString(document.getLength(),commandString.toSuccessString()+" @ "+date+"\n",null);
 		} 
 		catch (BadLocationException e) {}
 	}

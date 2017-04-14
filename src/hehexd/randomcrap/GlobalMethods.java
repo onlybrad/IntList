@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * Just a bunch of methods that can be used globally by any class
  * 
- * @author kassisch
+ * @author Only Brad
  *
  */
 public class GlobalMethods {

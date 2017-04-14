@@ -20,7 +20,7 @@ public class IntListLoader {
 	
 	private IntListLoader()  {
 		
-		String fileName = Config.getInstance().getFileName();
+		String fileName = Config.getInstance().FILE_NAME;
 		this.intListFile = new File(fileName);
 		
 		/* If the file doesn't exit, simply create a new IntList without 

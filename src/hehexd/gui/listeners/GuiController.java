@@ -61,6 +61,12 @@ public class GuiController {
 		/* add the ClearButtonListener to the "clear" button */
 		this.frame.getButtons()[CLEAR_BUTTON].addActionListener(new ClearButtonListener(output, intList));
 		
+		/* add the CheckButtonlistener to the "check" button */
+		this.frame.getButtons()[CHECK_BUTTON].addActionListener(new CheckButtonListener(name, output, intList));
+		
+		/* add the ListButtonListener to the "list" button */
+		//this.frame.getButtons()[LIST_BUTTON].addActionListener(new ListButtonListener());
+		
 		/* add The TabListener to the tabs of the JTabbedPane in the frame */
 		MouseAdapter listener = new TabListener();
 		this.frame.getTabbedPane().addMouseListener(listener);
