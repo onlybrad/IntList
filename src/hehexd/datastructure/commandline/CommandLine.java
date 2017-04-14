@@ -1,6 +1,8 @@
-package hehexd.datastructure;
+package hehexd.datastructure.commandline;
 
 import java.util.*;
+
+import hehexd.datastructure.Command;
 
 /**
  * The line of command class. This object represents the command line interface. It uses the
@@ -10,7 +12,7 @@ import java.util.*;
  * @author Only Brad
  *
  */
-public abstract class LineOfCommand {
+public abstract class CommandLine {
 	
 	private final Map<String, Command> commands; // The map of the commands and their functions
 	private String[] inputBuffer; // User input stored here as array
@@ -21,7 +23,7 @@ public abstract class LineOfCommand {
 	 * The String is the name of the command that is passed to the line of command, the COmmand
 	 * is its associated Command object.
 	 */
-	protected LineOfCommand(Map<String,Command> commands) {
+	protected CommandLine(Map<String,Command> commands) {
 		
 		this.commands = commands;
 	}

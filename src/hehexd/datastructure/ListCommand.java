@@ -14,7 +14,7 @@ public class ListCommand extends AnswerableCommand<String> {
 	private String list; // the string that represents the IntList;
 	
 	
-	protected ListCommand(IntList intList) {
+	public ListCommand(IntList intList) {
 		super(intList);
 	}
 

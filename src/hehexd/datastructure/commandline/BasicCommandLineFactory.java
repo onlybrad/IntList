@@ -1,4 +1,12 @@
-package hehexd.datastructure;
+package hehexd.datastructure.commandline;
+
+import hehexd.datastructure.AddCommand;
+import hehexd.datastructure.CheckCommand;
+import hehexd.datastructure.ClearCommand;
+import hehexd.datastructure.IntList;
+import hehexd.datastructure.ListCommand;
+import hehexd.datastructure.RagequitCommand;
+import hehexd.datastructure.RemoveCommand;
 
 /**
  * Line of Command with the commands: "add" , "save", "clear", "ragequit" and "check" xD lol
@@ -7,12 +15,12 @@ package hehexd.datastructure;
  * @author Only Brad
  *
  */
-public class BasicLineOfCommandFactory extends LineOfCommandFactory {
+public class BasicCommandLineFactory extends CommandLineFactory {
 	
-	private static BasicLineOfCommandFactory instance; // SINGLETON
+	private static BasicCommandLineFactory instance; // SINGLETON
 	private IntList intList; // THE INT LIST
 
-	private BasicLineOfCommandFactory(IntList intList) {
+	private BasicCommandLineFactory(IntList intList) {
 		
 		this.intList = intList;
 	}
@@ -22,9 +30,9 @@ public class BasicLineOfCommandFactory extends LineOfCommandFactory {
 	 * of the methods.
 	 */
 	@Override
-	public LineOfCommand create() {
+	public CommandLine create() {
 		
-		return new LineOfCommandBuilder()
+		return new CommandLineBuilder()
 				.addCommand(new AddCommand(intList),"add","A","a","put")
 				.addCommand(new ClearCommand(intList),"clear","wipe","c","w","C","W")
 				.addCommand(new RagequitCommand(),"ragequit","rq","RQ","q","Q" )
@@ -43,11 +51,11 @@ public class BasicLineOfCommandFactory extends LineOfCommandFactory {
 	 * @param intList ZZzzZz
 	 * @return The fucking LineOfCommand
 	 */
-	public static LineOfCommandFactory getInstance(IntList intList) {
+	public static CommandLineFactory getInstance(IntList intList) {
 		
 		if( instance == null || !intList.equals(instance.intList) )
 	
-			instance = new BasicLineOfCommandFactory(intList);
+			instance = new BasicCommandLineFactory(intList);
 
 		return instance;
 	

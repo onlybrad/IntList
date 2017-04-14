@@ -1,6 +1,8 @@
 package main;
 
 import hehexd.datastructure.*;
+import hehexd.datastructure.commandline.BasicCommandLineFactory;
+import hehexd.datastructure.commandline.CommandLine;
 import hehexd.ioclasses.IntListLoader;
 
 /**
@@ -36,7 +38,7 @@ public class IntListApp {
 	public static void main(String[] args) {
 		
 		intList = IntListLoader.getInstance().getIntList();
-		LineOfCommand lineOfCommand = BasicLineOfCommandFactory.getInstance(intList).create();
+		CommandLine lineOfCommand = BasicCommandLineFactory.getInstance(intList).create();
 		lineOfCommand.start();
 
 	}

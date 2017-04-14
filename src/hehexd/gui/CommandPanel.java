@@ -2,13 +2,7 @@ package hehexd.gui;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.border.EmptyBorder;
-
+import javax.swing.*;
 import hehexd.config.Config;
 
 /**

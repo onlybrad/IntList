@@ -1,6 +1,8 @@
-package hehexd.datastructure;
+package hehexd.datastructure.commandline;
 
 import java.util.*;
+
+import hehexd.datastructure.Command;
 
 /**
  * Create commands for the LineOfCommand class. Why do we have to create commands like this instead
@@ -9,14 +11,14 @@ import java.util.*;
  * @author Only Brad
  *
  */
-public class LineOfCommandBuilder {
+public class CommandLineBuilder {
 	
 	private final Map<String, Command> commands; // a Map containing all the commands and their function
 	private String messageError; // the message error when the message fails
 	private String decoration; // the string that appears at the beginning of the line of command
 	private String messageSuccess; // the message that appears when the command is successful
 	
-	public LineOfCommandBuilder() {
+	public CommandLineBuilder() {
 		
 		this.commands = new HashMap<>();
 	}
@@ -27,7 +29,7 @@ public class LineOfCommandBuilder {
 	 * @param commandNames the list of all names that refer to the Command in the line of command (aliases)
 	 * @return it's a Builder, what do you think is returned ?
 	 */
-	public LineOfCommandBuilder addCommand(Command command,String ... commandNames) {
+	public CommandLineBuilder addCommand(Command command,String ... commandNames) {
 		
 		for(String commandName : commandNames)
 			
@@ -41,7 +43,7 @@ public class LineOfCommandBuilder {
 	 * @param messageError The message error when the dumb user uses a wrong command
 	 * @return it's a Builder, what do you think is returned ?
 	 */
-	public LineOfCommandBuilder addMessageError(String messageError) {
+	public CommandLineBuilder addMessageError(String messageError) {
 		
 		this.messageError = messageError;
 		return this;
@@ -52,7 +54,7 @@ public class LineOfCommandBuilder {
 	 * @param messageSuccess Feedback when the command worked
 	 * @return it's a Builder, what do you think is returned ?
 	 */
-	public LineOfCommandBuilder addMessageSuccess(String messageSuccess) {
+	public CommandLineBuilder addMessageSuccess(String messageSuccess) {
 		
 		this.messageSuccess = messageSuccess;
 		return this;
@@ -63,7 +65,7 @@ public class LineOfCommandBuilder {
 	 * @param decoration what goes before typing in the LineOfCommand
 	 * @return it's a Builder, what do you think is returned ?
 	 */
-	public LineOfCommandBuilder addDecoration(String decoration) {
+	public CommandLineBuilder addDecoration(String decoration) {
 		
 		this.decoration = decoration;
 		return this;
@@ -74,7 +76,7 @@ public class LineOfCommandBuilder {
 	 * @return null if there are no commands, no message or decoration. 
 	 * Why ? cuz fuck you. Otherwise return a lineOfCommand object.
 	 */
-	public LineOfCommand get() {
+	public CommandLine get() {
 		
 		if(this.commands.isEmpty() || 
 		   this.messageError == null || 
@@ -88,20 +90,20 @@ public class LineOfCommandBuilder {
 			@Override
 			protected void decoration() {
 				
-				System.out.print(LineOfCommandBuilder.this.decoration);
+				System.out.print(CommandLineBuilder.this.decoration);
 			}
 
 			@Override
 			protected void errorMessage(String extra) {
 				
-				System.out.println(LineOfCommandBuilder.this.messageError + extra);
+				System.out.println(CommandLineBuilder.this.messageError + extra);
 				
 			}
 
 			@Override
 			protected void successMessage(String extra) {
 				
-				System.out.println(LineOfCommandBuilder.this.messageSuccess + extra);
+				System.out.println(CommandLineBuilder.this.messageSuccess + extra);
 				
 			}
 	
@@ -117,7 +119,7 @@ public class LineOfCommandBuilder {
 	 * @author Only Brad
 	 *
 	 */
-	public abstract class SpecialLineOfCommand extends LineOfCommand {
+	public abstract class SpecialLineOfCommand extends CommandLine {
 		
 		protected SpecialLineOfCommand() {
 			super(commands);
