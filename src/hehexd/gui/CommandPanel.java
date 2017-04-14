@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
@@ -37,19 +38,23 @@ public class CommandPanel extends JPanel {
 		this.inputArea = new InputArea();
 		this.outputArea = new OutputArea();
 		this.setBackground(Config.getInstance().PANEL_COLOR);
-		this.setLayout(new BorderLayout(25,25));
-		this.inputArea.setBorder(new EmptyBorder(25, 0, 0, 0));
+		//this.inputArea.setBorder(new EmptyBorder(25, 0, 0, 0));
+		this.setLayout(new BorderLayout());
 		
 		this.addPanels();
 	}
 	
 	/**
 	 * Add the input/output panels in the CommandPanel
+	 * The input and output are separated by a  vertical JSplitPane
 	 */
 	private void addPanels() {
 		
-		this.add(this.inputArea,Config.getInstance().INPUT);
-		this.add(this.outputArea, Config.getInstance().OUTPUT);
+		JSplitPane verticalSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,false,
+				this.inputArea,
+				this.outputArea);
+		
+		this.add(verticalSplitPane,BorderLayout.CENTER);
 
 	}
 	

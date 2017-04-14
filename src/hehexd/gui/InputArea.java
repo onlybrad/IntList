@@ -36,20 +36,15 @@ public class InputArea extends JPanel {
 	InputArea() {
 		
 		this.setBackground(Config.getInstance().PANEL_COLOR);
-		
-		/* add the input panels inside a container */
-		JPanel container = new JPanel(new GridLayout());
-		container.setOpaque(false);
 		this.setLayout(new BorderLayout(10,30));
-		this.add(container,"Center");
 		
 		JPanel textAreaPanel = new JPanel(new GridBagLayout()); // Text Panel
 		JPanel buttonsAreaPanel = new JPanel(new GridLayout(this.buttons.length,1,5,5)); // Button Panel
-
+		
 		JLabel textNameLabel = new JLabel("Name: "); // Label for the text name input
 		JLabel textReasonLabel = new JLabel("Reason: "); // Label for the text reason input
 		
-		/* add a border on both sides and give them a blue background color */
+		/* add a border on both sides and give them a background color */
 		this.style(textAreaPanel, buttonsAreaPanel, textNameLabel,textReasonLabel);
 		
 		/* add the Text Panel and Buttons Panels in the InputPanel */
@@ -77,7 +72,7 @@ public class InputArea extends JPanel {
 		
 		/* style of the button area */
 		buttonsAreaPanel.setBackground(Config.getInstance().PANEL_COLOR);
-		buttonsAreaPanel.setBorder(new EmptyBorder(0,100,0,100));
+		//buttonsAreaPanel.setBorder(new EmptyBorder(0,100,0,100));
 							
 		/* style of text fields */
 		this.textName.setBorder(BorderFactory.createLineBorder(Config.getInstance().BORDER_COLOR));
@@ -109,21 +104,19 @@ public class InputArea extends JPanel {
 	}
 	
 	/**
-	 * Add the text panel and button panel inside the container of [this]
+	 * Add the text panel and button panel inside the IntputArea panel,
+	 * by using a JSplitPane between the left and right sides.
 	 * 
 	 * @param textAreaPanel
 	 * @param buttonsAreaPanel
 	 */
 	private void addPanels(JPanel textAreaPanel, JPanel buttonsAreaPanel) {
 				
-		JPanel container = (JPanel)this.getComponent(0);
-		JPanel textAreaContainer = new JPanel();
-		textAreaContainer.add(textAreaPanel);
-		textAreaContainer.setBackground(Config.getInstance().PANEL_COLOR);
-		textAreaContainer.setBorder(new EmptyBorder(0, 150, 0, 100));
-		
-		container.add(textAreaContainer,"West");
-		container.add(buttonsAreaPanel,"East");
+		JSplitPane horizontalSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,false,
+				textAreaPanel,buttonsAreaPanel);
+		horizontalSplitPane.setBackground(Config.getInstance().PANEL_COLOR);
+		//horizontalSplitPane.setBorder(new EmptyBorder(0, 150, 0, 100));
+		this.add(horizontalSplitPane);
 	}
 	
 	/**
@@ -150,7 +143,9 @@ public class InputArea extends JPanel {
 		for(JButton button : this.buttons) {
 			
 			buttonsAreaPanel.add(button);
+			
 		}
+		
 	}
 	
 	/**
@@ -198,7 +193,7 @@ public class InputArea extends JPanel {
 		c.gridheight = gridheight;
 		c.weightx = weightx;
 		c.weighty = weighty;
-		c.anchor = GridBagConstraints.NORTH;
+		c.anchor = GridBagConstraints.CENTER;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.ipadx = ipadx;
 		c.insets = insets;
