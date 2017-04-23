@@ -45,8 +45,11 @@ public abstract class CommandLine {
 			Command command = null; // The command is the first string in the input
 			
 			if(input.length() > 0) 
-				/* Put the string inside an array without the separator (aka SPACE) */
-				this.inputBuffer = input.trim().split("\\s+");
+				/* Put the string inside an array without the separator (aka SPACE) unless it's inside
+				 * quotation mark */
+				this.inputBuffer = input.trim().
+							replaceAll("^\"", "").
+							split("\"?( |$)(?=(([^\"]*\"){2})*[^\"]*$)\"?");
 			
 			else
 				/* Empty string = you`re a dumbfuck who pressed enter without entering a command */

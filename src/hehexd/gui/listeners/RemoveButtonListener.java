@@ -70,7 +70,10 @@ class RemoveButtonListener extends ButtonListener {
 	@Override
 	protected String[] generateArgs() {
 		
-		return this.name.getText().trim().split("\\s+");
+		return this.name.getText().
+				trim().
+				replaceAll("^\"", "").
+				split("\"?( |$)(?=(([^\"]*\"){2})*[^\"]*$)\"?");
 	}
-
+	
 }

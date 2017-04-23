@@ -1,9 +1,17 @@
 package hehexd.gui;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.zip.ZipInputStream;
+
 import javax.swing.*;
+import javax.swing.event.CellEditorListener;
 import javax.swing.table.*;
 import hehexd.api.CommandManager;
+import hehexd.config.Config;
 import hehexd.datastructure.*;
 
 
@@ -36,6 +44,21 @@ class IntListTable extends JTable implements Observer{
 		}
 		
 		this.setModel(new IntListTableModel(names,reasons));
+		this.setDefaultRenderer(String.class, new IntListTableCellRender());
+		
+		/* The "buttons" column must be render as buttons, otherwise the "toString" of the buttons will be shown in text */
+		
+		/*this.getColumn("buttons").setCellRenderer(new TableCellRenderer() {
+			
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JButton button = (JButton)value;
+	            return button;  
+			}
+		});*/
+		
+
 	}
 
 	@Override
@@ -89,9 +112,7 @@ class IntListTable extends JTable implements Observer{
 
 	/**
 	 * <pre>This method will remove an entry from the Table model vector.
-	 * Since the arguments passed to the RemoveCommand may contain names that weren't removed, a NullPointerException
-	 * will be thrown when trying to remove them from the mode. Simply catch the NullPointer and do nothing.</pre>
-	 * 
+	 *  
 	 * @param arguments The argument passed to the Command object
 	 */
 	private void removeEntry(String[] arguments) {
@@ -102,7 +123,7 @@ class IntListTable extends JTable implements Observer{
 			
 			for(int j=0;j<model.getDataVector().size();j++) {
 			
-				if(model.getValueAt(j, 0).equals(arguments[i])) {
+				if(model.getValueAt(j, IntListTableModel.NAME).equals(arguments[i])) {
 				
 						model.removeRow(j);
 						break;
@@ -110,6 +131,11 @@ class IntListTable extends JTable implements Observer{
 				
 			}
 		}
+		
+		// update the row indexes
+		for(int i=0;i<model.getRowCount();i++)
+			
+			model.setValueAt(i, i, 0);
 
 	}
 	
@@ -121,20 +147,58 @@ class IntListTable extends JTable implements Observer{
 	private void addNewEntry(String[] arguments) {
 		
 		IntListTableModel model = (IntListTableModel) this.getModel();
-		
-		if(arguments.length == 1)
-			
-			model.addRow(new String[]{arguments[0],""});
-		
-		else if(arguments.length > 1) 
-			
-			for(int i=0;i<arguments.length-1;i++)
-				
-				model.addRow(new String[]{arguments[i],arguments[arguments.length-1]});
 
+		if(arguments.length == 1) {
+			
+			JButton removeButton = new JButton("remove");
+			/*removeButton.addActionListener(removeListener(model.getRowCount(), model));
+			model.addRow(new Object[]{String.valueOf(this.getRowCount()),arguments[0],"",removeButton});*/
+			
+		}
+		
+		else if(arguments.length > 1) {
+			
+			for(int i=0;i<arguments.length-1;i++)  {
+				
+				JButton removeButton = new JButton("remove");
+				removeButton.addActionListener(removeListener(model.getRowCount(), model));
+				
+				model.addRow(new Object[]{String.valueOf(this.getRowCount()), // #Entry
+						arguments[i], // The name of the kid
+						arguments[arguments.length-1]});// The reason we are adding the kid
+						/* ,removeButton}); */
+				
+			}
+			
+		}
+	}
+	
+	/**
+	 * 
+	 * Generate a listener that will be used to remove an entry when pressing a button (or other actions that lead to 
+	 * the removal of a row)
+	 * 
+	 * @param row the row that will be associated with the remove button listener
+	 * @return
+	 */
+	static ActionListener removeListener(int row, IntListTableModel model) {
+		
+		return new ActionListener() {
+				
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				model.removeRow(row);
+
+			}
+	
+		};
 	}
 	
 }
+
+// end of IntListTable class code
+
 
 /**
  * The model table of the IntList table.
@@ -148,9 +212,11 @@ class IntListTableModel extends DefaultTableModel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5160558076195370719L;
-	static final int NAME = 0;
-	static final int REASON = 1;
-	
+	static final int NB = 0; // number of the entry column
+	static final int NAME = 1; // name column
+	static final int REASON = 2; // reason column
+	static final int REMOVE_BUTTON = 3; // remove button column
+
 	/**
 	 * If the IntList 
 	 * 
@@ -159,13 +225,18 @@ class IntListTableModel extends DefaultTableModel {
 	@SuppressWarnings("unchecked")
 	IntListTableModel(List<Object> names, List<Object> reasons) {
 		
-		super(0,2);
-		
+		super(0,3);
+				
 		for(int i=0;i<names.size();i++) {
 			
+			/*JButton removeButton = new JButton("remove");
+			removeButton.addActionListener(IntListTable.removeListener(i, this));*/
+			
 			Vector<Object> data = new Vector<>();
+			data.add(i);
 			data.add(names.get(i));
 			data.add(reasons.get(i));
+			//data.add(removeButton);
 			
 			this.dataVector.add(data);
 		}
@@ -175,19 +246,74 @@ class IntListTableModel extends DefaultTableModel {
 	public String getColumnName(int column) {
 		
 		switch(column) {
+		case NB: return "#";
 		case NAME: return "Name";
 		case REASON: return "Reason";
-		default: return null;
+		case REMOVE_BUTTON: return "buttons";
+		default: return "";
 		}
 	}
 	
 	/**
-	 * Can't edit it yet.
+	 * Can't edit it yet
 	 */
 	@Override
 	public boolean isCellEditable(int row, int column) {
+
 		
 		return false;
 	}
 
+	@Override
+	public Class<?> getColumnClass(int columnIndex) {
+		
+		/*if(columnIndex == REMOVE_BUTTON)
+			
+			return JButton.class;*/
+		
+		return String.class;
+	}
+	
+	
 }
+
+// end of IntListTableModel class code
+
+/**
+ * 
+ * The Table Cell Renderer of the Int List, this class will add a background color (LIGHT_GRAY)
+ * to every 2 rows.
+ * 
+ * @author Only Brad
+ *
+ */
+class IntListTableCellRender extends DefaultTableCellRenderer {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 589666527684456241L;
+	
+	@Override
+	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+			int row, int column) {
+		
+		Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+		if(row % 2 == 1)
+			
+			cell.setBackground(Color.WHITE);
+		
+		else
+			
+			cell.setBackground(Config.getInstance().ALTERNATIVE_CELL_COLOR);
+
+		cell.setForeground(Color.BLACK);
+		
+		return cell;
+	}
+
+	
+}
+
+// end of IntListTableCellRender class clode

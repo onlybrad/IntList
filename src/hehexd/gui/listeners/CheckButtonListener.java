@@ -47,7 +47,10 @@ public class CheckButtonListener extends ButtonListener {
 	@Override
 	protected String[] generateArgs() {
 		
-		String[] name = this.name.getText().trim().split("\\s+");
+		String[] name = this.name.getText().
+				trim().
+				replaceAll("^\"", "").
+				split("\"?( |$)(?=(([^\"]*\"){2})*[^\"]*$)\"?");
 		
 		return new String[]{name[0]};
 	}

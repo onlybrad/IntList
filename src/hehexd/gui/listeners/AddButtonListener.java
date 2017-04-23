@@ -70,7 +70,10 @@ class AddButtonListener extends ButtonListener {
 	@Override
 	protected String[] generateArgs() {
 		
-		String[] names = this.name.getText().trim().split("\\s+");
+		String[] names = this.name.getText().
+				trim().
+				replaceAll("^\"", "").
+				split("\"?( |$)(?=(([^\"]*\"){2})*[^\"]*$)\"?");
 		
 		if(isEmpty(this.reason))
 			

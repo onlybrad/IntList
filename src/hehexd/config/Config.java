@@ -30,6 +30,7 @@ public class Config {
 	public final Dimension FRAME_SIZE;
 	public final Color PANEL_COLOR;
 	public final Color BORDER_COLOR;
+	public final Color ALTERNATIVE_CELL_COLOR;
 	public final SimpleDateFormat dateFormat;
 	
 	private Config() {
@@ -43,6 +44,7 @@ public class Config {
 		this.FRAME_SIZE = new Dimension(1024,768);
 		this.PANEL_COLOR = new Color(129, 216, 208);
 		this.BORDER_COLOR = new Color(0, 147, 175);
+		this.ALTERNATIVE_CELL_COLOR = Color.LIGHT_GRAY;
 		this.dateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss"); 
 	}
 	

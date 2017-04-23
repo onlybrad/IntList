@@ -39,7 +39,7 @@ public class InputArea extends JPanel {
 		this.setLayout(new BorderLayout(10,30));
 		
 		JPanel textAreaPanel = new JPanel(new GridBagLayout()); // Text Panel
-		JPanel buttonsAreaPanel = new JPanel(new GridLayout(this.buttons.length,1,5,5)); // Button Panel
+		JPanel buttonsAreaPanel = new JPanel(new GridLayout(this.buttons.length,3,5,5)); // Button Panel
 		
 		JLabel textNameLabel = new JLabel("Name: "); // Label for the text name input
 		JLabel textReasonLabel = new JLabel("Reason: "); // Label for the text reason input
@@ -139,11 +139,30 @@ public class InputArea extends JPanel {
 	 * @param buttonsAreaPanel
 	 */
 	private void addButtons(JPanel buttonsAreaPanel) {
-
-		for(JButton button : this.buttons) {
+		
+		
+		/* The grid that contains the button surface is equal to buttons.length(the number of buttons) x 3.
+		 * The buttons will be placed in the middle column. This position can be
+		 * expressed as 3K-2, where K is an integer. Add null everywhere else.
+		 * Example, in 3 x 3 grid, the buttons will go in the position 1, 4 and 7.
+		 * 
+		 * 1 = 3*1 - 2
+		 * 4 = 3*2 - 2
+		 * 7 = 3*3 - 2
+		 * 
+		 * if i is the position, we will test that i+2 % 3 == 0
+		 */
+		
+		for(int i=0;i<buttons.length*3;i++) {
 			
-			buttonsAreaPanel.add(button);
+			if( (i+2) % 3 == 0)
 			
+				buttonsAreaPanel.add(this.buttons[(i+2)/3 - 1]);
+			
+			else
+				
+				buttonsAreaPanel.add(Box.createHorizontalGlue());
+		
 		}
 		
 	}
