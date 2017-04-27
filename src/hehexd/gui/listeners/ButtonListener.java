@@ -5,7 +5,7 @@ import javax.swing.*;
 import hehexd.datastructure.*;
 
 /**
- * All Button listeners of the IntList must implement this class. They all will access the same data
+ * All Button listeners of the IntList command tab must implement this class. They all will access the same data
  * and use (almost) the same GUI elements so might as well inherit from the same super class.
  * 
  * All sub-classes must implement a method that returns a Command object, two methods that write in the
@@ -41,12 +41,18 @@ abstract class ButtonListener implements ActionListener {
 	}
 	
 	@Override
+	
+	/**
+	 * Begin by setting the command in the commandManager object. Apply the command and verify
+	 * if the command succeeded or not. If it does, output a success message otherwise a failure
+	 * message.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		
 		/* set the command and execute it */
-		GuiController.commandManager.setCommand(this.command);
+		GuiController.getInstance().commandManager.setCommand(this.command);
 		
-		if(GuiController.commandManager.apply(this.generateArgs()))
+		if(GuiController.getInstance().commandManager.apply(this.generateArgs()))
 			
 			this.successOutput();
 		
@@ -57,8 +63,8 @@ abstract class ButtonListener implements ActionListener {
 		
 	/**
 	 * Concrete ButtonListener must implement this to return the right command
-	 * @param intList 
-	 * 
+	 
+	 * @param intList the IntList
 	 * @return the command to execute when the button is pressed
 	 */
 	protected abstract Command getCommand(IntList intList);
@@ -103,12 +109,22 @@ abstract class ButtonListener implements ActionListener {
 	/**
 	 * Clear a specific JTextField
 	 * 
-	 * @param name
+	 * @param field the text field
 	 */
 	protected static void clear(JTextField field) {
 		
 		field.setText("");
 		
+	}
+	
+	/**
+	 * Clear a specific JTextArea
+	 * 
+	 * @param area the text area
+	 */
+	protected static void clear(JTextArea area) {
+		
+		area.setText("");
 	}
 
 

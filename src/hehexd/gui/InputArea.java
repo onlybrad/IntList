@@ -2,8 +2,6 @@ package hehexd.gui;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.*;
-
 import hehexd.config.Config;
 
 /**                                  
@@ -16,7 +14,7 @@ import hehexd.config.Config;
  * @author Only Brad
  *
  */
-public class InputArea extends JPanel {
+class InputArea extends JPanel {
 	
 	/**
 	 * 

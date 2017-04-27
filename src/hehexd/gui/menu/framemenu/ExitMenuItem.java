@@ -1,4 +1,4 @@
-package hehexd.gui.menu;
+package hehexd.gui.menu.framemenu;
 
 import java.awt.event.*;
 import javax.swing.*;

@@ -1,7 +1,7 @@
 package hehexd.gui;
 
 import hehexd.config.Config;
-import hehexd.gui.menu.IntListMenuBar;
+import hehexd.gui.menu.framemenu.IntListMenuBar;
 import hehexd.ioclasses.IntListLoader;
 import java.awt.*;
 import javax.swing.*;

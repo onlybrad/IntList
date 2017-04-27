@@ -6,14 +6,14 @@ import java.awt.event.*;
 import javax.swing.JTabbedPane;
 
 /**
- * A listener that lets you Drag a pane in a JTabbedPane, 
+ * A listener that lets you Drag a tab in a JTabbedPane, 
  * Source: http://stackoverflow.com/questions/29288371/how-to-create-movable-draggable-tabbed-panes-i-e
- * Modified in order to be independant class from the JTabbedPane
+ * Modified in order to be an independent class from the JTabbedPane
  * 
  * @author Prasaanth Neelakandan
  *
  */
-class TabListener extends MouseAdapter {
+class TabMouseAdapter extends MouseAdapter {
 	
     Point initialPoint;
     double initialY, targetY;

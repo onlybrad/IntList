@@ -5,11 +5,12 @@ import java.util.function.*;
 
 
 /**
- * An abstract Command for the LineOfCommand. All direct subclasses of Command must implement the method
+ * An abstract Command for the LineOfCommand (can be treated as a functional interface). 
+ * All direct subclasses of Command must implement the method
  * of the interface Function: apply. apply contains the core function of the Command. It returns
  * true if the command succeeded in executing its function, or false if it failed (for bad arguments
  * for example). All direct subclasses of Command must also implement the getCommandString, which returns
- * a CommandString object that has the role of generating String depending
+ * a CommandString object that has the role of generating String depending on the situation (success&failure)
  *  
  * Function&lt;String[],Boolean&gt;
  * 
@@ -35,7 +36,7 @@ public abstract class Command implements Function<String[], Boolean> {
 	
 	@Override
 	/**
-	 * @param t the command without the command name
+	 * @param t the arguments without the command name
 	 * @return if the command function succeeded in executing
 	 */
 	public abstract Boolean apply(String[] t);

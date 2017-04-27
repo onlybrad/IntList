@@ -2,17 +2,13 @@ package hehexd.gui;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.*;
-import java.util.zip.ZipInputStream;
-
 import javax.swing.*;
-import javax.swing.event.CellEditorListener;
 import javax.swing.table.*;
-import hehexd.api.CommandManager;
+
 import hehexd.config.Config;
 import hehexd.datastructure.*;
+import hehexd.gui.menu.tablemenu.TableMenu;
 
 
 /**
@@ -21,7 +17,7 @@ import hehexd.datastructure.*;
  * @author Only Brad
  *
  */
-class IntListTable extends JTable implements Observer{
+public class IntListTable extends JTable implements Observer{
 
 	/**
 	 * 
@@ -45,20 +41,7 @@ class IntListTable extends JTable implements Observer{
 		
 		this.setModel(new IntListTableModel(names,reasons));
 		this.setDefaultRenderer(String.class, new IntListTableCellRender());
-		
-		/* The "buttons" column must be render as buttons, otherwise the "toString" of the buttons will be shown in text */
-		
-		/*this.getColumn("buttons").setCellRenderer(new TableCellRenderer() {
-			
-			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-					int row, int column) {
-				JButton button = (JButton)value;
-	            return button;  
-			}
-		});*/
-		
-
+		this.setComponentPopupMenu(new TableMenu(this));
 	}
 
 	@Override
@@ -106,7 +89,12 @@ class IntListTable extends JTable implements Observer{
 	 */
 	private void clearTable() {
 		
-		this.setModel(new IntListTableModel(new ArrayList<Object>(),new ArrayList<Object>()));
+		this.setModel(
+				new IntListTableModel(
+						new ArrayList<Object>(),
+						new ArrayList<Object>()
+						)
+				);
 		
 	}
 
@@ -140,59 +128,24 @@ class IntListTable extends JTable implements Observer{
 	}
 	
 	/**
-	 * This method will add a new entry to the Table model array and update its Map copy of the IntList
+	 * This method will add a new entry to the Table model array
 	 * 
 	 * @param arguments The argument passed to the Command object
 	 */
 	private void addNewEntry(String[] arguments) {
 		
 		IntListTableModel model = (IntListTableModel) this.getModel();
-
-		if(arguments.length == 1) {
-			
-			JButton removeButton = new JButton("remove");
-			/*removeButton.addActionListener(removeListener(model.getRowCount(), model));
-			model.addRow(new Object[]{String.valueOf(this.getRowCount()),arguments[0],"",removeButton});*/
-			
-		}
 		
-		else if(arguments.length > 1) {
-			
-			for(int i=0;i<arguments.length-1;i++)  {
+		for(int i=0;i<arguments.length-1;i++)  {
 				
-				JButton removeButton = new JButton("remove");
-				removeButton.addActionListener(removeListener(model.getRowCount(), model));
-				
-				model.addRow(new Object[]{String.valueOf(this.getRowCount()), // #Entry
+			model.addRow(new Object[]{
+					String.valueOf(this.getRowCount()), // #Entry
 						arguments[i], // The name of the kid
-						arguments[arguments.length-1]});// The reason we are adding the kid
-						/* ,removeButton}); */
+						arguments[arguments.length-1] // the reason
+						}
+			);
 				
-			}
-			
 		}
-	}
-	
-	/**
-	 * 
-	 * Generate a listener that will be used to remove an entry when pressing a button (or other actions that lead to 
-	 * the removal of a row)
-	 * 
-	 * @param row the row that will be associated with the remove button listener
-	 * @return
-	 */
-	static ActionListener removeListener(int row, IntListTableModel model) {
-		
-		return new ActionListener() {
-				
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				model.removeRow(row);
-
-			}
-	
-		};
 	}
 	
 }
@@ -229,14 +182,10 @@ class IntListTableModel extends DefaultTableModel {
 				
 		for(int i=0;i<names.size();i++) {
 			
-			/*JButton removeButton = new JButton("remove");
-			removeButton.addActionListener(IntListTable.removeListener(i, this));*/
-			
 			Vector<Object> data = new Vector<>();
 			data.add(i);
 			data.add(names.get(i));
 			data.add(reasons.get(i));
-			//data.add(removeButton);
 			
 			this.dataVector.add(data);
 		}
@@ -260,17 +209,12 @@ class IntListTableModel extends DefaultTableModel {
 	@Override
 	public boolean isCellEditable(int row, int column) {
 
-		
 		return false;
 	}
 
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
-		
-		/*if(columnIndex == REMOVE_BUTTON)
-			
-			return JButton.class;*/
-		
+
 		return String.class;
 	}
 	

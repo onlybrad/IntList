@@ -52,7 +52,6 @@ public class AddCommand extends Command {
 			/* if at least 1 kid was added to the int list then the command has succeeded */
 			if(this.addedKids.size() > 0) {
 				
-				
 				IntListSaver.getInstance().save(this.intList);
 				return true;
 			}

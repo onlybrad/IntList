@@ -14,7 +14,7 @@ import hehexd.config.Config;
  * @author Only Brad
  *
  */
-public class OutputArea extends JPanel {
+class OutputArea extends JPanel {
 
 	/**
 	 * 
