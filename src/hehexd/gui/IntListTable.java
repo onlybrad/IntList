@@ -9,6 +9,7 @@ import javax.swing.table.*;
 import hehexd.config.Config;
 import hehexd.datastructure.*;
 import hehexd.gui.menu.tablemenu.TableMenu;
+import hehexd.randomcrap.TableModelConstants;
 
 
 /**
@@ -41,7 +42,7 @@ public class IntListTable extends JTable implements Observer{
 		
 		this.setModel(new IntListTableModel(names,reasons));
 		this.setDefaultRenderer(String.class, new IntListTableCellRender());
-		this.setComponentPopupMenu(new TableMenu(this));
+		this.setComponentPopupMenu(new TableMenu(intList));
 	}
 
 	@Override
@@ -159,16 +160,12 @@ public class IntListTable extends JTable implements Observer{
  * @author Only Brad
  *
  */
-class IntListTableModel extends DefaultTableModel {
+class IntListTableModel extends DefaultTableModel implements TableModelConstants {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5160558076195370719L;
-	static final int NB = 0; // number of the entry column
-	static final int NAME = 1; // name column
-	static final int REASON = 2; // reason column
-	static final int REMOVE_BUTTON = 3; // remove button column
 
 	/**
 	 * If the IntList 

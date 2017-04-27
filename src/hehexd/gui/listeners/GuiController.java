@@ -9,8 +9,9 @@ import static hehexd.randomcrap.CommandConstants.*;
 
 
 /**
- * Class that links the GUI to the ActionListener
- * Contains a pointer to a global (Package wise) CommandManager object
+ * Class that links the GUI to all the ActionListeners. The start method of this class should be called
+ * to add all the functionalities to the buttons and other components of the AppFrame object.
+ * Contains a pointer to a global CommandManager object
  * [Singleton]
  * 
  * @author Only Brad
@@ -19,7 +20,7 @@ import static hehexd.randomcrap.CommandConstants.*;
 public class GuiController {
 	
 	/* use this with the actionlistener of the hehexd.gui.listeners package */
-	final CommandManager commandManager;
+	public final CommandManager commandManager;
 	private static GuiController instance;
 	private final IntList intList; // THE FUCKING INTLIST
 	private final AppFrame frame; // The frame

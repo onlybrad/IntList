@@ -1,6 +1,8 @@
 package hehexd.datastructure;
 
 import java.util.*;
+
+import hehexd.ioclasses.IntListSaver;
 import hehexd.randomcrap.WhatTheFuckAreYouDoingException;
 
 /**
@@ -37,6 +39,7 @@ public class RemoveCommand extends Command {
 			
 		}
 		
+		IntListSaver.getInstance().save(intList);
 		/* if at least 1 kid was removed from the int list then the command has succeeded */
 		return this.removed.size()>0;
 	

@@ -2,7 +2,7 @@ package hehexd.gui.menu.tablemenu;
 
 import javax.swing.JPopupMenu;
 
-import hehexd.gui.IntListTable;
+import hehexd.datastructure.IntList;
 
 /**
  * 
@@ -18,8 +18,8 @@ public class TableMenu extends JPopupMenu {
 	 */
 	private static final long serialVersionUID = 5825868235658396047L;
 	
-	public TableMenu(IntListTable table) {
+	public TableMenu(IntList intList) {
 		
-		this.add(new RemoveMenuItem(table));
+		this.add(new RemoveMenuItem(intList));
 	}
 }

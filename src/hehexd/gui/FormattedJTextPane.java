@@ -30,7 +30,6 @@ class FormattedJTextPane extends JTextPane {
 		
 	    try {
 			Font font = Font.createFont(Font.TRUETYPE_FONT, new File(path));
-			System.out.println(font);
 		    return font.deriveFont(Font.PLAIN,15);
 			
 		} catch (FontFormatException | IOException e) {

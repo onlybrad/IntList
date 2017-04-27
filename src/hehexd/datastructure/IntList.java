@@ -4,7 +4,7 @@ import java.util.HashMap;
 import hehexd.randomcrap.WhatTheFuckAreYouDoingException;
 
 /**
- * Have you ever wished to feed your ass off because some moron feeder or useless jungler
+ * <pre>Have you ever wished to feed your ass off because some moron feeder or useless jungler
  * made you waste at least 20 minutes of your life - while probably blaming you for the loss at the same time-
  * With this class, this is going to be possible! 
  * This class will track the name of the assholes by adding it to a HashMap, 
@@ -14,7 +14,7 @@ import hehexd.randomcrap.WhatTheFuckAreYouDoingException;
  * and blame laners for losing 4v5.
  * 
  * Key = name of the kid
- * Value = reason you added the kid
+ * Value = reason you added the kid</pre>
  * 
  * @author Only Brad
  * @author tyler1
